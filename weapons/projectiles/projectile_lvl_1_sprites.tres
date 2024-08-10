@@ -1,0 +1,35 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://5hit80bskt1o"]
+
+[ext_resource type="Texture2D" uid="uid://dd164e8unvtpq" path="res://assets/1-BitPlatformerPack/monochrome_tilemap_transparent_packed.png" id="1_t82dn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fo413"]
+atlas = ExtResource("1_t82dn")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n80iw"]
+atlas = ExtResource("1_t82dn")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2s8v"]
+atlas = ExtResource("1_t82dn")
+region = Rect2(32, 16, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fo413")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n80iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2s8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n80iw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]

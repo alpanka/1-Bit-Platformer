@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://dyktuqt3hoxfw"]
+
+[ext_resource type="PackedScene" uid="uid://ct1cbjvyu4prw" path="res://characters/enemies/_platformer_enemy_base.tscn" id="1_gwy1k"]
+[ext_resource type="SpriteFrames" uid="uid://bsdu344byhlqb" path="res://characters/enemies/enemy_invader_sprite.tres" id="2_2ypwj"]
+[ext_resource type="Script" path="res://characters/enemies/enemy_invader.gd" id="2_hu5g1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xrx5y"]
+radius = 5.0
+
+[node name="EnemyInvader" instance=ExtResource("1_gwy1k")]
+script = ExtResource("2_hu5g1")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_2ypwj")
+animation = &"idle"
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_xrx5y")

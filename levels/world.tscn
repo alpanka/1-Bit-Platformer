@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1g5lt4q82mc3"]
+
+[ext_resource type="PackedScene" uid="uid://bjqiq87e5gbg4" path="res://levels/level_01.tscn" id="1_ncbtk"]
+[ext_resource type="PackedScene" uid="uid://dgc7narjno60k" path="res://characters/player/player.tscn" id="2_wg6wd"]
+[ext_resource type="PackedScene" uid="uid://dyktuqt3hoxfw" path="res://characters/enemies/enemy_invader.tscn" id="3_nvbbs"]
+
+[node name="World" type="Node2D"]
+
+[node name="Projectiles" type="Node2D" parent="." groups=["Projectiles"]]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(-57, -77)
+
+[node name="EnemyInvader2" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(-98, -11)
+
+[node name="EnemyInvader3" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(59, -11)
+
+[node name="Level01" parent="." instance=ExtResource("1_ncbtk")]
+
+[node name="Player" parent="." instance=ExtResource("2_wg6wd")]
+position = Vector2(-48, -4)
+
+[editable path="Level01"]
+[editable path="Player"]

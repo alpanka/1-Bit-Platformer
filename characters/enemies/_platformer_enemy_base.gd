@@ -1,0 +1,2 @@
+class_name PlatformerEnemyBase
+extends PlatformerCharacterBase

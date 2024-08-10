@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnmt7wbj5ir78"]
+
+[ext_resource type="Script" path="res://controllers/shooter_controller.gd" id="1_3814t"]
+[ext_resource type="Texture2D" uid="uid://dd164e8unvtpq" path="res://assets/1-BitPlatformerPack/monochrome_tilemap_transparent_packed.png" id="2_cg0oe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_je8ty"]
+atlas = ExtResource("2_cg0oe")
+region = Rect2(133, 193, 6, 13)
+
+[node name="ShooterController" type="Node2D"]
+script = ExtResource("1_3814t")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(18.5, 0)
+
+[node name="WandOfDestruction" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = SubResource("AtlasTexture_je8ty")
+offset = Vector2(0, -13.5)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(19, 0)
+rotation = -1.5708
+target_position = Vector2(0, 5)
+hit_from_inside = true

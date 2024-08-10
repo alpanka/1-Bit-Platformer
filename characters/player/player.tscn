@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgc7narjno60k"]
+
+[ext_resource type="Script" path="res://characters/player/player.gd" id="1_2xyhl"]
+[ext_resource type="SpriteFrames" uid="uid://c0ocbb5gybv11" path="res://characters/player/player_sprite_frames.tres" id="1_m0qnb"]
+[ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_2s5bl"]
+[ext_resource type="Script" path="res://controllers/input_controller.gd" id="5_e3qmu"]
+[ext_resource type="PackedScene" uid="uid://dnmt7wbj5ir78" path="res://controllers/shooter_controller.tscn" id="5_kgl0d"]
+[ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="6_xjwpo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sklj"]
+radius = 4.0
+height = 10.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
+script = ExtResource("1_2xyhl")
+character_sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_8sklj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = ExtResource("1_m0qnb")
+animation = &"run"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Controllers" type="Node2D" parent="."]
+
+[node name="InputController" type="Node" parent="Controllers" node_paths=PackedStringArray("player", "shooter_controller")]
+script = ExtResource("5_e3qmu")
+player = NodePath("../..")
+shooter_controller = NodePath("../ShooterController")
+
+[node name="AnimationController" type="Node2D" parent="Controllers" node_paths=PackedStringArray("character")]
+script = ExtResource("3_2s5bl")
+character = NodePath("../..")
+
+[node name="ShooterController" parent="Controllers" node_paths=PackedStringArray("character") instance=ExtResource("5_kgl0d")]
+position = Vector2(0, -3)
+character = NodePath("../..")
+
+[node name="HurtboxController" parent="Controllers" instance=ExtResource("6_xjwpo")]

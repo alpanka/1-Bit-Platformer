@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqxcq7f2rw7xg"]
+
+[ext_resource type="PackedScene" uid="uid://crxooykgv600p" path="res://weapons/projectiles/_projectile_base_scene.tscn" id="1_33j44"]
+[ext_resource type="Script" path="res://weapons/projectiles/projectile_lvl_1.gd" id="2_cgnnr"]
+[ext_resource type="SpriteFrames" uid="uid://5hit80bskt1o" path="res://weapons/projectiles/projectile_lvl_1_sprites.tres" id="3_m45a5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mp2os"]
+radius = 3.0
+
+[node name="Projectile LVL1" instance=ExtResource("1_33j44")]
+script = ExtResource("2_cgnnr")
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("3_m45a5")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_mp2os")
