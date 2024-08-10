@@ -10,7 +10,6 @@ extends Area2D
 @export var cool_down_duration: float
 @export var cooled_down: bool = true
 
-var character: PlatformerCharacterBase
 var collision_area: CollisionShape2D
 
 
