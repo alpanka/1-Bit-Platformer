@@ -62,11 +62,10 @@ func _ready() -> void:
 	# Apply stats. Using self_id from _init() on instances
 	initilize_stats()
 
+
 func _physics_process(delta: float) -> void:
-	velocity.x = direction.x * speed
-	
-	_apply_gravity(delta)
-	move_and_slide()
+	_movement_handler(delta)
+
 
 # Initilize character specific stats
 func initilize_stats() -> void:
@@ -105,10 +104,15 @@ func _jump() -> void:
 	velocity.y -= jump_force
 
 
-func _apply_gravity(delta) -> void:
+func _movement_handler(delta) -> void:
+	# Apply gravity
 	var gravity: Vector2 = get_gravity()
 	velocity.x += gravity.x * delta
 	velocity.y += gravity.y * delta
+
+	# Apply movement
+	velocity.x = direction.x * speed
+	move_and_slide()
 
 
 # TODO Add death animation.
