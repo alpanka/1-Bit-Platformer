@@ -32,7 +32,7 @@ func shoot_attempt() -> bool:
 
 
 func _shoot() -> void:
-	character.current_state = character.STATE.ATTACK
+	#character.current_state = character.STATE.ATTACK
 	var projectile = projectile_scene.instantiate() as ProjectileBase
 	var projectile_direction = Vector2.RIGHT.rotated(global_rotation)
 	
