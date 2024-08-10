@@ -18,8 +18,6 @@ extends Node2D
 			character.direction_changed.connect(_on_direction_changed)
 			#character.state_changed.connect(_on_state_changed)
 
-var character_state
-
 
 func _process(_delta: float) -> void:
 	pass

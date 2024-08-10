@@ -33,7 +33,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_8k5l8")
 }],
 "loop": false,
-"name": &"dead",
+"name": &"death",
 "speed": 10.0
 }, {
 "frames": [{
@@ -58,6 +58,6 @@ animations = [{
 "texture": SubResource("AtlasTexture_nllq2")
 }],
 "loop": true,
-"name": &"run",
+"name": &"walk",
 "speed": 10.0
 }]

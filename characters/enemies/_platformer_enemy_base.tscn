@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=13 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_w5o2i"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/dead_condition.gd" id="8_nm73j"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="8_pni1n"]
+[ext_resource type="Script" path="res://characters/enemies/beehave/dead_action.gd" id="10_yepr5"]
 
 [node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
 collision_layer = 16
@@ -54,7 +55,7 @@ script = ExtResource("6_pywb2")
 script = ExtResource("8_nm73j")
 
 [node name="DeadAction" type="Node" parent="BeehaveTree/SelectorComposite/DeathSequence"]
-script = ExtResource("8_pni1n")
+script = ExtResource("10_yepr5")
 
 [node name="HitSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("6_pywb2")
