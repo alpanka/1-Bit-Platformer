@@ -18,7 +18,7 @@ var character_stats: Dictionary = {
 		"jump_force": 0.0,
 		"can_ground_jump": false,
 		"can_air_jump": false,
-		"health_init": 15
+		"health_init": 50
 	}
 }
 
@@ -26,7 +26,7 @@ var character_stats: Dictionary = {
 var projectile_stats: Dictionary = {
 	# Projectile Base Class
 	"ProjectileBase" = {
-		"damage": 10.0,
+		"damage": 5.0,
 		"velocity": 600.0,
 		"magazine": 10
 	},

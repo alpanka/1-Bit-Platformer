@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=12 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
+[ext_resource type="Script" path="res://controllers/blackboard_handler.gd" id="4_dtpqx"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_eklhm"]
+[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="4_urpri"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5_ahg8e"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_pywb2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_w5o2i"]
+[ext_resource type="Script" path="res://characters/enemies/beehave/dead_condition.gd" id="8_nm73j"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="8_pni1n"]
 
 [node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
 collision_layer = 16
@@ -22,3 +30,43 @@ position = Vector2(0, -8)
 [node name="CharacterAnimationController" type="Node2D" parent="Controllers" node_paths=PackedStringArray("character")]
 script = ExtResource("3_sow3w")
 character = NodePath("../..")
+
+[node name="BlackboardHandler" type="Node" parent="Controllers" node_paths=PackedStringArray("character", "blackboard")]
+script = ExtResource("4_dtpqx")
+character = NodePath("../..")
+blackboard = NodePath("../../Blackboard")
+
+[node name="Blackboard" type="Node" parent="."]
+script = ExtResource("4_urpri")
+
+[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("4_eklhm")
+blackboard = NodePath("../Blackboard")
+actor = NodePath("..")
+
+[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
+script = ExtResource("5_ahg8e")
+
+[node name="DeathSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("6_pywb2")
+
+[node name="DeadCondition" type="Node" parent="BeehaveTree/SelectorComposite/DeathSequence"]
+script = ExtResource("8_nm73j")
+
+[node name="DeadAction" type="Node" parent="BeehaveTree/SelectorComposite/DeathSequence"]
+script = ExtResource("8_pni1n")
+
+[node name="HitSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("6_pywb2")
+
+[node name="HitCondition" type="Node" parent="BeehaveTree/SelectorComposite/HitSequence"]
+script = ExtResource("7_w5o2i")
+
+[node name="HitAction" type="Node" parent="BeehaveTree/SelectorComposite/HitSequence"]
+script = ExtResource("8_pni1n")
+
+[node name="WanderSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
+script = ExtResource("6_pywb2")
+
+[node name="WanderAction" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
+script = ExtResource("8_pni1n")

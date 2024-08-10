@@ -6,6 +6,10 @@ extends CharacterBody2D
 
 ## Emit direction change
 signal direction_changed(direction: Vector2)
+## Emit alive status
+signal is_alive_changed(alive_state: bool)
+## Emit health change
+signal health_changed(old_value: int, new_value: int)
 ## Emit state change
 #signal state_changed(old_state: STATE, new_state: STATE)
 
@@ -19,8 +23,10 @@ var self_id: String
 @export var can_ground_jump: bool
 @export var can_air_jump: bool
 
+
 @export var health_init: int
 @export var current_health: int
+
 
 # Direction change setter, emitter
 var direction: Vector2:
@@ -30,6 +36,15 @@ var direction: Vector2:
 		#if direction.x * value.x <= 0: # Emit if X changed
 		direction = value
 		direction_changed.emit(direction)
+
+# Set is_alive and emit when changed
+var is_alive: bool = true:
+	set(value):
+		if is_alive == value:
+			return
+	
+		is_alive = value
+		is_alive_changed.emit(is_alive)
 
 
 #enum STATE {
@@ -41,27 +56,16 @@ var direction: Vector2:
 	#DAMAGED	= 11,
 	#DEATH 	= 20
 #}
-#
-## State change setter, emitter
-#var current_state: STATE:
-	#set(new_state):
-		#if current_state == new_state:
-			#return
-#
-		#state_changed.emit(current_state, new_state)
-		#current_state = new_state
 
 
 func _ready() -> void:
 	# Apply stats. Using self_id from _init() on instances
 	initilize_stats()
-	#current_state = STATE.IDLE
 
 func _physics_process(delta: float) -> void:
 	velocity.x = direction.x * speed
 	
 	_apply_gravity(delta)
-	#_movement_checker()
 	move_and_slide()
 
 # Initilize character specific stats
@@ -82,9 +86,8 @@ func initilize_stats() -> void:
 # Apply damage from hurtbox controller
 func apply_damage(_damage_amount):
 	if current_health >= 0:
-		#current_state = STATE.DAMAGED
 		current_health = current_health - _damage_amount
-		print("damage on ", _damage_amount, " ", self)
+		print(_damage_amount, " damage on ", self.name)
 	
 	if current_health <= 0:
 		_character_death()
@@ -100,7 +103,6 @@ func jump_attempt() -> bool:
 
 func _jump() -> void:
 	velocity.y -= jump_force
-	#current_state = STATE.JUMP
 
 
 func _apply_gravity(delta) -> void:
@@ -109,16 +111,9 @@ func _apply_gravity(delta) -> void:
 	velocity.y += gravity.y * delta
 
 
-#func _movement_checker():
-	#if not is_zero_approx(direction.x):
-		#current_state = STATE.RUN
-	#else:
-		#current_state = STATE.IDLE
-
-# TODO State doesnt stick on death.
 # TODO Add death animation.
 func _character_death() -> void:
-	#current_state = STATE.DEATH
-	print("DIED! ", self)
+	is_alive = false
+	print("DIED! ", self.name)
 	
-	queue_free()
+	#queue_free()

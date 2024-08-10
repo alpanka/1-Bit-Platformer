@@ -19,7 +19,7 @@ func controller_area_init() -> void:
 	# Find parent's collision shape
 	for child in get_owner().get_children():
 		if child is CollisionShape2D:
-			print("got child ", child)
+			print("Shape set for ", child.name)
 			collision_area = child
 
 	# Apply gotten shape properties to hurtbox

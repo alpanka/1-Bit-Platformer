@@ -32,6 +32,18 @@ window/stretch/mode="canvas_items"
 
 enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "gray",
+"res://characters/": "red",
+"res://controllers/": "purple",
+"res://globals/": "purple",
+"res://levels/": "orange",
+"res://weapons/": "red"
+}
+
 [global_group]
 
 Projectiles=""

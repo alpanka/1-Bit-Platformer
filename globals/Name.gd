@@ -30,3 +30,7 @@ var enemy_invader: PackedScene = preload("res://characters/enemies/enemy_invader
 
 ## Group names
 var projectiles_group: String = "Projectiles"
+
+
+## Blacboard keys
+var is_alive_key: StringName = "is_alive"
