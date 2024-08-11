@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0p6kq02llw75"]
+
+[ext_resource type="Script" path="res://controllers/wandering_controller.gd" id="1_8teqq"]
+
+[node name="WanderingController" type="Node2D"]
+position = Vector2(0, -5)
+script = ExtResource("1_8teqq")
+
+[node name="WanderDirectionResetter" type="Timer" parent="."]
+
+[node name="RayCastWallRight" type="RayCast2D" parent="."]
+rotation = -1.5708
+target_position = Vector2(0, 16)
+
+[node name="RayCastWallLeft" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(0, 16)
+
+[node name="RayCastFloorRight" type="RayCast2D" parent="."]
+position = Vector2(5, 0)
+target_position = Vector2(0, 16)
+hit_from_inside = true
+
+[node name="RayCastFloorLeft" type="RayCast2D" parent="."]
+position = Vector2(-5, 0)
+target_position = Vector2(0, 16)
+hit_from_inside = true
+
+[connection signal="timeout" from="WanderDirectionResetter" to="." method="_on_direction_resetter_timeout"]

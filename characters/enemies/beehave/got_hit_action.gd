@@ -17,4 +17,4 @@ func tick(_actor: Node, _blackboard: Blackboard):
 
 func _on_animation_finished():
 	anim_running = false
-	#character_sprite.animation_finished.disconnect(_on_animation_finished)
+	character_sprite.animation_finished.disconnect(_on_animation_finished)

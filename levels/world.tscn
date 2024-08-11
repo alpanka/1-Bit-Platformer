@@ -11,13 +11,13 @@
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
-position = Vector2(45.6463, -28.3905)
+position = Vector2(66.0841, -1.8015)
 
 [node name="EnemyInvader2" parent="Enemies" instance=ExtResource("3_nvbbs")]
-position = Vector2(-98, -11)
+position = Vector2(-99.5874, -2.86456)
 
 [node name="EnemyInvader3" parent="Enemies" instance=ExtResource("3_nvbbs")]
-position = Vector2(135.218, -65.5087)
+position = Vector2(137.797, -51.2221)
 
 [node name="Level01" parent="." instance=ExtResource("1_ncbtk")]
 

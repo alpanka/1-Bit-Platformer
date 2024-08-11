@@ -9,7 +9,7 @@ signal direction_changed(direction: Vector2)
 ## Emit alive status
 signal is_alive_changed(alive_state: bool)
 ## Emit health change
-signal health_changed(old_value: int, new_value: int)
+#signal health_changed(old_value: int, new_value: int)
 ## Emit damage received
 signal damage_received(damage_amount)
 ## Emit state change
@@ -78,7 +78,7 @@ func initilize_stats() -> void:
 		can_air_jump = Stats.character_stats[self_id]["can_air_jump"]
 		health_init = Stats.character_stats[self_id]["health_init"]
 	else:
-		print("failed self_id", self)
+		print("failed to assign self_id ", self.name)
 		return
 
 	current_health = health_init

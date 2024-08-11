@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
+[ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/wandering_controller.tscn" id="3_uj1y5"]
 [ext_resource type="Script" path="res://controllers/blackboard_handler.gd" id="4_dtpqx"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_eklhm"]
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="4_urpri"]
@@ -28,6 +29,8 @@ position = Vector2(0, -8)
 [node name="Controllers" type="Node2D" parent="."]
 
 [node name="HurtboxController" parent="Controllers" instance=ExtResource("2_2gdci")]
+
+[node name="WanderingController" parent="Controllers" instance=ExtResource("3_uj1y5")]
 
 [node name="CharacterAnimationController" type="Node2D" parent="Controllers" node_paths=PackedStringArray("character")]
 script = ExtResource("3_sow3w")

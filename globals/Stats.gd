@@ -14,7 +14,7 @@ var character_stats: Dictionary = {
 		"health_init": 100
 	},
 	"enemy_invader" = {
-		"speed": 120.0,
+		"speed": 20.0,
 		"jump_force": 0.0,
 		"can_ground_jump": false,
 		"can_air_jump": false,
