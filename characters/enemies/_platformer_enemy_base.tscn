@@ -9,11 +9,11 @@
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="4_urpri"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5_ahg8e"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_pywb2"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_w5o2i"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/dead_condition.gd" id="8_nm73j"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/dead_action.gd" id="10_yepr5"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_condition.gd" id="11_wfuqe"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_action.gd" id="12_w1wkb"]
+[ext_resource type="Script" path="res://characters/enemies/beehave/wander_condition.gd" id="14_f1e5s"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/wander_action.gd" id="14_h8ykf"]
 
 [node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
@@ -74,7 +74,7 @@ script = ExtResource("12_w1wkb")
 script = ExtResource("6_pywb2")
 
 [node name="WanderCondition" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
-script = ExtResource("7_w5o2i")
+script = ExtResource("14_f1e5s")
 
 [node name="WanderAction" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
 script = ExtResource("14_h8ykf")

@@ -9,14 +9,14 @@ func before_run(_actor: Node, _blackboard: Blackboard):
 
 
 func tick(_actor: Node, _blackboard: Blackboard):
-	if anim_running:
+	if anim_running == true:
 		return RUNNING
-	else:
+	elif anim_running == false:
 		_blackboard.set_value(Name.got_hit_key, false)
 		return SUCCESS
 
 
 func _on_animation_finished():
+	character_sprite.animation_finished.disconnect(_on_animation_finished)
 	character.direction = Vector2.ZERO
 	anim_running = false
-	character_sprite.animation_finished.disconnect(_on_animation_finished)
