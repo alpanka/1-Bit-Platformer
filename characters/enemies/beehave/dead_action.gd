@@ -1,13 +1,5 @@
 extends ActionLeaf
 
-var character: PlatformerCharacterBase
-var character_sprite: AnimatedSprite2D
-
-
-func _ready() -> void:
-	character = get_owner()
-	character_sprite = character.character_sprite
-
 
 func before_run(_actor: Node, _blackboard: Blackboard):
 	character_sprite.play(Name.anim_dead)
@@ -19,4 +11,5 @@ func tick(_actor: Node, _blackboard: Blackboard):
 
 
 func _on_anim_finished():
-	character.queue_free()
+	pass
+	#character.queue_free()

@@ -15,9 +15,10 @@ var attack:	StringName = "attack"
 
 
 ## Animation names
-var anim_idle: 	StringName = "idle"
-var anim_walk: 	StringName = "walk"
-var anim_dead: 	StringName = "death"
+var anim_idle:		StringName = "idle"
+var anim_walk:		StringName = "walk"
+var anim_dead:		StringName = "death"
+var anim_got_hit:	StringName = "got_hit"
 
 ## Scenes to instantiate/reference
 ## Projectiles
@@ -37,4 +38,5 @@ var projectiles_group: String = "Projectiles"
 
 
 ## Blacboard keys
-var is_alive_key: StringName = "is_alive"
+var is_alive_key:	StringName = "is_alive"
+var got_hit_key:	StringName = "got_hit"

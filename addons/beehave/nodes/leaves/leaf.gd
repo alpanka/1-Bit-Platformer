@@ -7,6 +7,17 @@ class_name Leaf extends BeehaveNode
 const EXPRESSION_PLACEHOLDER: String = "Insert an expression..."
 
 
+## Custom addition
+## To be used by all Leaf nodes
+## Need access to actor and AnimatedSprite2D
+var character: PlatformerCharacterBase
+var character_sprite: AnimatedSprite2D
+var anim_running: bool
+func _ready() -> void:
+	character = get_owner()
+	character_sprite = character.character_sprite
+
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray = []
 

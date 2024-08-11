@@ -10,6 +10,8 @@ signal direction_changed(direction: Vector2)
 signal is_alive_changed(alive_state: bool)
 ## Emit health change
 signal health_changed(old_value: int, new_value: int)
+## Emit damage received
+signal damage_received(damage_amount)
 ## Emit state change
 #signal state_changed(old_state: STATE, new_state: STATE)
 
@@ -84,6 +86,8 @@ func initilize_stats() -> void:
 
 # Apply damage from hurtbox controller
 func apply_damage(_damage_amount):
+	damage_received.emit(_damage_amount)
+	
 	if current_health >= 0:
 		current_health = current_health - _damage_amount
 		print(_damage_amount, " damage on ", self.name)
