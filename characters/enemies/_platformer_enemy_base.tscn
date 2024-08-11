@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=16 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
@@ -9,11 +9,12 @@
 [ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="4_urpri"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5_ahg8e"]
 [ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_pywb2"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="7_w5o2i"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/dead_condition.gd" id="8_nm73j"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/action.gd" id="8_pni1n"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/dead_action.gd" id="10_yepr5"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_condition.gd" id="11_wfuqe"]
 [ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_action.gd" id="12_w1wkb"]
+[ext_resource type="Script" path="res://characters/enemies/beehave/wander_action.gd" id="14_h8ykf"]
 
 [node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
 collision_layer = 16
@@ -30,16 +31,15 @@ position = Vector2(0, -8)
 
 [node name="HurtboxController" parent="Controllers" instance=ExtResource("2_2gdci")]
 
+[node name="BlackboardHandler" type="Node" parent="Controllers" node_paths=PackedStringArray("blackboard")]
+script = ExtResource("4_dtpqx")
+blackboard = NodePath("../../Blackboard")
+
 [node name="WanderingController" parent="Controllers" instance=ExtResource("3_uj1y5")]
 
 [node name="CharacterAnimationController" type="Node2D" parent="Controllers" node_paths=PackedStringArray("character")]
 script = ExtResource("3_sow3w")
 character = NodePath("../..")
-
-[node name="BlackboardHandler" type="Node" parent="Controllers" node_paths=PackedStringArray("character", "blackboard")]
-script = ExtResource("4_dtpqx")
-character = NodePath("../..")
-blackboard = NodePath("../../Blackboard")
 
 [node name="Blackboard" type="Node" parent="."]
 script = ExtResource("4_urpri")
@@ -73,5 +73,8 @@ script = ExtResource("12_w1wkb")
 [node name="WanderSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
 script = ExtResource("6_pywb2")
 
+[node name="WanderCondition" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
+script = ExtResource("7_w5o2i")
+
 [node name="WanderAction" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
-script = ExtResource("8_pni1n")
+script = ExtResource("14_h8ykf")

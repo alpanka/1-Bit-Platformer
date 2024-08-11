@@ -11,5 +11,5 @@ func tick(_actor: Node, _blackboard: Blackboard):
 
 
 func _on_anim_finished():
-	pass
+	character.speed = 0.0
 	#character.queue_free()

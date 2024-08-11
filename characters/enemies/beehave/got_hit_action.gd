@@ -3,8 +3,9 @@ extends ActionLeaf
 
 func before_run(_actor: Node, _blackboard: Blackboard):
 	character_sprite.animation_finished.connect(_on_animation_finished)
-	character_sprite.play(Name.anim_got_hit)
+	
 	anim_running = true
+	character_sprite.play(Name.anim_got_hit)
 
 
 func tick(_actor: Node, _blackboard: Blackboard):
@@ -16,5 +17,6 @@ func tick(_actor: Node, _blackboard: Blackboard):
 
 
 func _on_animation_finished():
+	character.direction = Vector2.ZERO
 	anim_running = false
 	character_sprite.animation_finished.disconnect(_on_animation_finished)

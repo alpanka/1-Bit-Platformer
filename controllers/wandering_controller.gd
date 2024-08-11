@@ -1,3 +1,4 @@
+class_name WanderingController
 extends Node2D
 
 # RayCast for wall collision
@@ -17,7 +18,6 @@ const LEFT: 	Vector2i = Vector2.LEFT
 const STOP: 	Vector2i = Vector2.ZERO
 
 var character: PlatformerCharacterBase
-var current_direction: Vector2
 
 
 func _ready() -> void:
@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	_collision_checker()
 
 
+## Check collision of RayCast2Ds and determine direction.
 func _collision_checker():
 	if not ray_cast_floor_right.is_colliding():
 		character.direction = LEFT
@@ -40,6 +41,6 @@ func _collision_checker():
 	if ray_cast_wall_left.is_colliding():
 		character.direction = RIGHT
 
-
+# TODO add a timer to reset direction
 func _on_direction_resetter_timeout() -> void:
 	pass
