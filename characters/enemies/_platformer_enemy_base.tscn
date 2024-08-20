@@ -1,20 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
-[ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/wandering_controller.tscn" id="3_uj1y5"]
-[ext_resource type="Script" path="res://controllers/blackboard_handler.gd" id="4_dtpqx"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="4_eklhm"]
-[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="4_urpri"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="5_ahg8e"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="6_pywb2"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/dead_condition.gd" id="8_nm73j"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/dead_action.gd" id="10_yepr5"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_condition.gd" id="11_wfuqe"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/got_hit_action.gd" id="12_w1wkb"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/wander_condition.gd" id="14_f1e5s"]
-[ext_resource type="Script" path="res://characters/enemies/beehave/wander_action.gd" id="14_h8ykf"]
+[ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/enemy/wandering_controller.tscn" id="3_uj1y5"]
+[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="5_6eit0"]
+[ext_resource type="PackedScene" uid="uid://bxlaivccsrp1m" path="res://controllers/enemy/detection_controller.tscn" id="5_sqngw"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="6_iyeoj"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="7_cfsw8"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_3xt6x"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="10_7u7kh"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="10_vthhu"]
+[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="11_841ge"]
+[ext_resource type="Script" path="res://controllers/state/state_machine.gd" id="12_332qh"]
+[ext_resource type="Script" path="res://controllers/state/enemy/enemy_idle_state.gd" id="13_ix8x4"]
 
 [node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
 collision_layer = 16
@@ -31,50 +30,56 @@ position = Vector2(0, -8)
 
 [node name="HurtboxController" parent="Controllers" instance=ExtResource("2_2gdci")]
 
-[node name="BlackboardHandler" type="Node" parent="Controllers" node_paths=PackedStringArray("blackboard")]
-script = ExtResource("4_dtpqx")
-blackboard = NodePath("../../Blackboard")
-
 [node name="WanderingController" parent="Controllers" instance=ExtResource("3_uj1y5")]
 
 [node name="CharacterAnimationController" type="Node2D" parent="Controllers" node_paths=PackedStringArray("character")]
 script = ExtResource("3_sow3w")
 character = NodePath("../..")
 
-[node name="Blackboard" type="Node" parent="."]
-script = ExtResource("4_urpri")
+[node name="DetectionController" parent="Controllers" instance=ExtResource("5_sqngw")]
 
-[node name="BeehaveTree" type="Node" parent="." node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("4_eklhm")
-blackboard = NodePath("../Blackboard")
-actor = NodePath("..")
+[node name="Beehave_Dump" type="Node" parent="."]
 
-[node name="SelectorComposite" type="Node" parent="BeehaveTree"]
-script = ExtResource("5_ahg8e")
+[node name="Blackboard" type="Node" parent="Beehave_Dump"]
+script = ExtResource("5_6eit0")
 
-[node name="DeathSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("6_pywb2")
+[node name="BeehaveTree" type="Node" parent="Beehave_Dump" node_paths=PackedStringArray("blackboard", "actor")]
+script = ExtResource("6_iyeoj")
+blackboard = NodePath("@Node@112437")
+actor = NodePath("../Blackboard")
 
-[node name="DeadCondition" type="Node" parent="BeehaveTree/SelectorComposite/DeathSequence"]
-script = ExtResource("8_nm73j")
+[node name="SelectorReactive" type="Node" parent="Beehave_Dump/BeehaveTree"]
+script = ExtResource("7_cfsw8")
 
-[node name="DeadAction" type="Node" parent="BeehaveTree/SelectorComposite/DeathSequence"]
-script = ExtResource("10_yepr5")
+[node name="IdleAndWander" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive"]
+script = ExtResource("8_3xt6x")
 
-[node name="HitSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("6_pywb2")
+[node name="Idling" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/IdleAndWander"]
+script = ExtResource("10_7u7kh")
 
-[node name="GotHitCondition" type="Node" parent="BeehaveTree/SelectorComposite/HitSequence"]
-script = ExtResource("11_wfuqe")
+[node name="Wandering" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/IdleAndWander"]
+script = ExtResource("10_7u7kh")
 
-[node name="GotHitAction" type="Node" parent="BeehaveTree/SelectorComposite/HitSequence"]
-script = ExtResource("12_w1wkb")
+[node name="ChaseAndAttack" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive"]
+script = ExtResource("10_7u7kh")
 
-[node name="WanderSequence" type="Node" parent="BeehaveTree/SelectorComposite"]
-script = ExtResource("6_pywb2")
+[node name="GetPlayer" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack"]
+script = ExtResource("10_vthhu")
 
-[node name="WanderCondition" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
-script = ExtResource("14_f1e5s")
+[node name="AlwaysSucceed" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack"]
+script = ExtResource("11_841ge")
 
-[node name="WanderAction" type="Node" parent="BeehaveTree/SelectorComposite/WanderSequence"]
-script = ExtResource("14_h8ykf")
+[node name="Selector" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed"]
+script = ExtResource("8_3xt6x")
+
+[node name="InRange" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed/Selector"]
+script = ExtResource("10_7u7kh")
+
+[node name="Chase" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed/Selector"]
+script = ExtResource("10_7u7kh")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("12_332qh")
+
+[node name="EnemyIdleState" type="Node" parent="StateMachine"]
+script = ExtResource("13_ix8x4")

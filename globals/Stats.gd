@@ -18,7 +18,8 @@ var character_stats: Dictionary = {
 		"jump_force": 0.0,
 		"can_ground_jump": false,
 		"can_air_jump": false,
-		"health_init": 50
+		"health_init": 50,
+		"detection_length": 50
 	}
 }
 

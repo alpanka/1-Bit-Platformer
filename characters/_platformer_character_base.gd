@@ -70,6 +70,8 @@ func _physics_process(delta: float) -> void:
 
 
 # Initilize character specific stats
+# TODO any better way to assign these values?
+# Some variables are player specific, some are enemy specific.
 func initilize_stats() -> void:
 	if self_id:
 		speed = Stats.character_stats[self_id]["speed"]
