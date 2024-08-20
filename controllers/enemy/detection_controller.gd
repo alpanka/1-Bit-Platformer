@@ -1,3 +1,5 @@
+## Controller to detect if player is in range
+class_name DetectionController
 extends Node2D
 
 @export var detection_length: int
@@ -5,11 +7,10 @@ extends Node2D
 @onready var ray_cast_left: RayCast2D = $RayCastLeft
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 
-var character: PlatformerEnemyBase = get_owner()
+@onready var character: PlatformerEnemyBase = get_owner()
 
 
 func _ready() -> void:
-	character = get_owner()
 	_update_detection_length()
 
 

@@ -11,7 +11,7 @@
 radius = 4.0
 height = 10.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite") groups=["Player"]]
 script = ExtResource("1_2xyhl")
 character_sprite = NodePath("AnimatedSprite2D")
 

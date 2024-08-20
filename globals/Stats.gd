@@ -19,7 +19,8 @@ var character_stats: Dictionary = {
 		"can_ground_jump": false,
 		"can_air_jump": false,
 		"health_init": 50,
-		"detection_length": 50
+		"detection_length": 50,
+		"attack_range": 20.0
 	}
 }
 
