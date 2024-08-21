@@ -2,16 +2,25 @@
 class_name State
 extends Node
 
-signal state_switch
+signal state_switched
+
+@export var actor: PlatformerCharacterBase
 
 
-func state_enter():
+func _ready() -> void:
+	actor = get_owner() as PlatformerCharacterBase
+
+func state_enter() -> void:
 	pass
 
 
-func state_exit():
+func state_exit() -> void:
 	pass
 
 
-func state_update(delta):
+func update_process(delta) -> void:
+	pass
+
+
+func update_physics(delta) -> void:
 	pass

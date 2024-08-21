@@ -4,6 +4,7 @@
 class_name PlatformerCharacterBase
 extends CharacterBody2D
 
+
 ## Emit direction change
 signal direction_changed(direction: Vector2)
 ## Emit alive status
@@ -19,7 +20,8 @@ var self_id: String
 
 @export var character_sprite: AnimatedSprite2D
 
-@export var speed: float
+@export var speed_init: float
+@export var current_speed: float
 
 @export var jump_force: float
 @export var can_ground_jump: bool
@@ -74,7 +76,7 @@ func _physics_process(delta: float) -> void:
 # Some variables are player specific, some are enemy specific.
 func initilize_stats() -> void:
 	if self_id:
-		speed = Stats.character_stats[self_id]["speed"]
+		speed_init = Stats.character_stats[self_id]["speed_init"]
 		jump_force = Stats.character_stats[self_id]["jump_force"]
 		can_ground_jump = Stats.character_stats[self_id]["can_ground_jump"]
 		can_air_jump = Stats.character_stats[self_id]["can_air_jump"]
@@ -83,6 +85,13 @@ func initilize_stats() -> void:
 		print("failed to assign self_id ", self.name)
 		return
 
+	#var character_stats: Dictionary = Stats.character_stats[self_id]
+	#
+	#for key in character_stats.keys():
+		#self.key = character_stats[key]
+		## Can I use dict key as a variable name somehow?
+	
+	current_speed = speed_init
 	current_health = health_init
 
 
@@ -117,11 +126,12 @@ func _movement_handler(delta) -> void:
 	velocity.y += gravity.y * delta
 
 	# Apply movement
-	velocity.x = direction.x * speed
+	velocity.x = direction.x * current_speed
 	move_and_slide()
 
 
 # TODO Add death animation.
+# TODO stop getting damage upon death.
 func _character_death() -> void:
 	is_alive = false
 	print("DIED! ", self.name)

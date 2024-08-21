@@ -11,11 +11,13 @@ extends Node
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
-			states_dict[child.name.to_lower()] = child
-			child.state_switch.connect(change_state)
+			print(child)
+			print(child.name)
+			states_dict[child.name] = child
+			child.state_switched.connect(change_state)
 	
 	if initial_state:
-		initial_state.enter()
+		initial_state.state_enter()
 		current_state = initial_state
 	else:
 		print("Failed to init a state of ", self.name)
@@ -23,7 +25,12 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if current_state:
-		current_state.update(delta)
+		current_state.update_process(delta)
+
+
+func _physics_process(delta: float) -> void:
+	if current_state:
+		current_state.update_physics(delta)
 
 
 func change_state(source_state: State, new_state_name: String):
@@ -32,19 +39,19 @@ func change_state(source_state: State, new_state_name: String):
 		source_state.name, " to ", new_state_name)
 		return
 
-	var new_state = states_dict.get(new_state_name.to_lower())
+	var new_state = states_dict.get(new_state_name)
 	
 	if not new_state:
 		print("New state is empty! ", new_state_name)
 		return
 	
-	new_state.enter()
+	new_state.state_enter()
 	
 	current_state = new_state
 
 # Use when absolutely needed. Like for "DeathState"
 func change_state_forced(new_state_name: String):
-	var new_state = states_dict.get(new_state_name.to_lower())
+	var new_state = states_dict.get(new_state_name)
 	
 	if not new_state:
 		print("New state is empty! ", new_state_name)
@@ -58,6 +65,6 @@ func change_state_forced(new_state_name: String):
 		var exit_callable = Callable(current_state, "exit")
 		exit_callable.call_deferred()
 	
-	new_state.enter()
+	new_state.state_enter()
 	
 	current_state = new_state
