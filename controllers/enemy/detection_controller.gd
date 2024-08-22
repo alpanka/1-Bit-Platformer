@@ -14,7 +14,7 @@ func _ready() -> void:
 	_update_detection_length()
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_detection_checker()
 
 

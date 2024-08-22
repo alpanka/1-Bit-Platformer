@@ -10,14 +10,11 @@ radius = 5.0
 [node name="EnemyInvader" instance=ExtResource("1_gwy1k")]
 script = ExtResource("2_hu5g1")
 
-[node name="AnimatedSprite2D" parent="." index="0"]
+[node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = ExtResource("2_2ypwj")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" parent="." index="1"]
+[node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_xrx5y")
-
-[node name="BeehaveTree" parent="Beehave_Dump" index="1" node_paths=PackedStringArray("blackboard")]
-blackboard = NodePath("@Node@32908")

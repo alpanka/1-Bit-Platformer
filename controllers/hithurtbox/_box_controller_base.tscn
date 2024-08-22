@@ -8,6 +8,5 @@ script = ExtResource("1_6av1l")
 [node name="HurtboxArea2D" type="CollisionShape2D" parent="."]
 
 [node name="CooldownTimer" type="Timer" parent="."]
-wait_time = 0.5
 
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_cooldown_timer_timeout"]

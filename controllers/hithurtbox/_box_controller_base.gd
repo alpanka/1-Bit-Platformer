@@ -11,7 +11,7 @@ extends Area2D
 @export var cooled_down: bool = true
 
 var collision_area: CollisionShape2D
-
+var owner_node: Node2D = get_owner()
 
 ## Copy character's collision shape details.
 ## Apply them to Controller area shape.
@@ -19,7 +19,7 @@ func controller_area_init() -> void:
 	# Find parent's collision shape
 	for child in get_owner().get_children():
 		if child is CollisionShape2D:
-			print("Shape set for ", child.name)
+			push_warning("Shape set for ", child.name)
 			collision_area = child
 
 	# Apply gotten shape properties to hurtbox

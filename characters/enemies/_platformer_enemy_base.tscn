@@ -1,32 +1,29 @@
-[gd_scene load_steps=20 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="FontFile" uid="uid://sgnyjhp3i1ji" path="res://assets/fonts/m5x7.ttf" id="2_2bte3"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
+[ext_resource type="PackedScene" uid="uid://blmc7ul71me43" path="res://controllers/hithurtbox/hitbox_controller.tscn" id="3_mo3h0"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
 [ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/enemy/wandering_controller.tscn" id="3_uj1y5"]
-[ext_resource type="Script" path="res://addons/beehave/blackboard.gd" id="5_6eit0"]
 [ext_resource type="PackedScene" uid="uid://bxlaivccsrp1m" path="res://controllers/enemy/detection_controller.tscn" id="5_sqngw"]
 [ext_resource type="Script" path="res://controllers/enemy/enemy_attack_controller.gd" id="6_ehcgn"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/beehave_tree.gd" id="6_iyeoj"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector_reactive.gd" id="7_cfsw8"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/selector.gd" id="8_3xt6x"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/composites/sequence.gd" id="10_7u7kh"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/leaves/condition.gd" id="10_vthhu"]
-[ext_resource type="Script" path="res://addons/beehave/nodes/decorators/succeeder.gd" id="11_841ge"]
 [ext_resource type="Script" path="res://controllers/state/state_machine.gd" id="12_332qh"]
 [ext_resource type="Script" path="res://controllers/state/enemy/enemy_idle_state.gd" id="13_ix8x4"]
 [ext_resource type="Script" path="res://controllers/state/enemy/enemy_wander_state.gd" id="16_3rrtd"]
 [ext_resource type="Script" path="res://controllers/state/enemy/enemy_chase_state.gd" id="17_7g6w7"]
+[ext_resource type="Script" path="res://controllers/state/enemy/enemy_attack_state.gd" id="19_i3cch"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1ao4x"]
 font = ExtResource("2_2bte3")
 
-[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
+[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite", "state_machine", "state_label")]
 collision_layer = 16
 collision_mask = 531
 script = ExtResource("1_mkti6")
 character_sprite = NodePath("AnimatedSprite2D")
+state_machine = NodePath("StateMachine")
+state_label = NodePath("StateLabel")
 
 [node name="StateLabel" type="Label" parent="."]
 offset_left = -22.0
@@ -47,6 +44,8 @@ position = Vector2(0, -8)
 
 [node name="Controllers" type="Node2D" parent="."]
 
+[node name="HitboxController" parent="Controllers" instance=ExtResource("3_mo3h0")]
+
 [node name="HurtboxController" parent="Controllers" instance=ExtResource("2_2gdci")]
 
 [node name="WanderingController" parent="Controllers" instance=ExtResource("3_uj1y5")]
@@ -60,46 +59,6 @@ character = NodePath("../..")
 [node name="EnemyAttackController" type="Node2D" parent="Controllers"]
 script = ExtResource("6_ehcgn")
 
-[node name="Beehave_Dump" type="Node" parent="."]
-
-[node name="Blackboard" type="Node" parent="Beehave_Dump"]
-script = ExtResource("5_6eit0")
-
-[node name="BeehaveTree" type="Node" parent="Beehave_Dump" node_paths=PackedStringArray("blackboard", "actor")]
-script = ExtResource("6_iyeoj")
-blackboard = NodePath("@Node@17289")
-actor = NodePath("../Blackboard")
-
-[node name="SelectorReactive" type="Node" parent="Beehave_Dump/BeehaveTree"]
-script = ExtResource("7_cfsw8")
-
-[node name="IdleAndWander" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive"]
-script = ExtResource("8_3xt6x")
-
-[node name="Idling" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/IdleAndWander"]
-script = ExtResource("10_7u7kh")
-
-[node name="Wandering" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/IdleAndWander"]
-script = ExtResource("10_7u7kh")
-
-[node name="ChaseAndAttack" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive"]
-script = ExtResource("10_7u7kh")
-
-[node name="GetPlayer" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack"]
-script = ExtResource("10_vthhu")
-
-[node name="AlwaysSucceed" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack"]
-script = ExtResource("11_841ge")
-
-[node name="Selector" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed"]
-script = ExtResource("8_3xt6x")
-
-[node name="InRange" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed/Selector"]
-script = ExtResource("10_7u7kh")
-
-[node name="Chase" type="Node" parent="Beehave_Dump/BeehaveTree/SelectorReactive/ChaseAndAttack/AlwaysSucceed/Selector"]
-script = ExtResource("10_7u7kh")
-
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_332qh")
 initial_state = NodePath("EnemyIdleState")
@@ -112,3 +71,6 @@ script = ExtResource("16_3rrtd")
 
 [node name="EnemyChaseState" type="Node" parent="StateMachine"]
 script = ExtResource("17_7g6w7")
+
+[node name="EnemyAttackState" type="Node" parent="StateMachine"]
+script = ExtResource("19_i3cch")

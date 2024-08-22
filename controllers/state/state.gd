@@ -18,9 +18,9 @@ func state_exit() -> void:
 	pass
 
 
-func update_process(delta) -> void:
+func update_process(_delta) -> void:
 	pass
 
 
-func update_physics(delta) -> void:
+func update_physics(_delta) -> void:
 	pass

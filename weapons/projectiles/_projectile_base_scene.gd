@@ -4,7 +4,7 @@ extends RigidBody2D
 
 var self_id: String
 
-@export var damage_amount: int
+@export var damage_amount: float
 @export var initial_velocity: float
 @export var magazine_count: int
 
@@ -15,7 +15,7 @@ var self_id: String
 
 func _ready() -> void:
 	initilize_stats()
-	hitbox_controller.connect("area_entered", _on_hitbox_controller_area_entered)
+	hitbox_controller.connect("area_entered", _on_hitbox_area_entered)
 
 
 func initilize_stats() -> void:
@@ -28,6 +28,6 @@ func launch_projectile(_launch_direction: Vector2) -> void:
 	linear_velocity = _launch_direction * initial_velocity
 
 
-func _on_hitbox_controller_area_entered(area: Area2D) -> void:
+func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area is HurtboxController:
 		area.got_hit(damage_amount)

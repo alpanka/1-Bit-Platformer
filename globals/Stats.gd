@@ -8,6 +8,7 @@ extends Node
 var character_stats: Dictionary = {
 	"player" = {
 		"speed_init": 160,
+		"speed_multiplier": 1.8,
 		"jump_force": 260,
 		"can_ground_jump": true,
 		"can_air_jump": true,
@@ -15,12 +16,14 @@ var character_stats: Dictionary = {
 	},
 	"enemy_invader" = {
 		"speed_init": 10.0,
+		"speed_multiplier": 1.2,
 		"jump_force": 0.0,
 		"can_ground_jump": false,
 		"can_air_jump": false,
 		"health_init": 50,
 		"detection_length": 50,
-		"attack_range": 20.0
+		"attack_range": 20.0,
+		"damage_amount": 20
 	}
 }
 

@@ -12,12 +12,12 @@ func state_enter():
 	actor.character_sprite.play("idle")
 
 
-func update_process(delta):
-	actor.current_speed = 0
-
-
 func state_exit():
 	actor.current_speed = actor.speed_init
+
+
+func update_process(_delta):
+	actor.current_speed = 0
 
 
 func _set_idle_timer():
@@ -26,7 +26,7 @@ func _set_idle_timer():
 	idle_timer.connect("timeout", _on_idle_timer_timeout)
 	idle_timer.wait_time = idle_duration
 	idle_timer.start()
-	
+
 
 func _on_idle_timer_timeout():
 	state_switched.emit(self, "EnemyWanderState")

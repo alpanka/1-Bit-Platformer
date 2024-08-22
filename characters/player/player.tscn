@@ -30,6 +30,8 @@ zoom = Vector2(4, 4)
 
 [node name="Controllers" type="Node2D" parent="."]
 
+[node name="HurtboxController" parent="Controllers" instance=ExtResource("6_xjwpo")]
+
 [node name="InputController" type="Node" parent="Controllers" node_paths=PackedStringArray("player", "shooter_controller")]
 script = ExtResource("5_e3qmu")
 player = NodePath("../..")
@@ -42,5 +44,3 @@ character = NodePath("../..")
 [node name="ShooterController" parent="Controllers" node_paths=PackedStringArray("character") instance=ExtResource("5_kgl0d")]
 position = Vector2(0, -3)
 character = NodePath("../..")
-
-[node name="HurtboxController" parent="Controllers" instance=ExtResource("6_xjwpo")]

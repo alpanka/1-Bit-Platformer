@@ -25,7 +25,7 @@ func _ready() -> void:
 	character.direction = [LEFT, RIGHT].pick_random()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_collision_checker()
 
 

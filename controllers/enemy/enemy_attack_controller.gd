@@ -12,7 +12,7 @@ func _ready() -> void:
 	attack_range = Stats.character_stats[character.self_id]["attack_range"]
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_in_attack_range_checker()
 
 

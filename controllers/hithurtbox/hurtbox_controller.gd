@@ -7,6 +7,7 @@ extends BoxControllerBase
 
 func _ready() -> void:
 	controller_area_init()
+	cooldown_timer.wait_time = 0.6
 
 
 func got_hit(_damage_amount: int) -> void:
