@@ -17,11 +17,12 @@
 [sub_resource type="LabelSettings" id="LabelSettings_1ao4x"]
 font = ExtResource("2_2bte3")
 
-[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
+[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite", "state_machine")]
 collision_layer = 16
 collision_mask = 531
 script = ExtResource("1_mkti6")
 character_sprite = NodePath("AnimatedSprite2D")
+state_machine = NodePath("StateMachine")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
@@ -49,9 +50,8 @@ character = NodePath("../..")
 
 [node name="DetectionController" parent="Controllers" instance=ExtResource("5_sqngw")]
 
-[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state", "state_label")]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("state_label")]
 script = ExtResource("12_332qh")
-initial_state = NodePath("EnemyIdleState")
 state_label = NodePath("StateLabel")
 
 [node name="StateLabel" type="Label" parent="StateMachine"]

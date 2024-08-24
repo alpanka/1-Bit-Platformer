@@ -25,5 +25,17 @@ func initilize_stats():
 	player_node = get_tree().get_first_node_in_group("Player")
 
 
+func update_direction(_direction):
+	if _direction == null:
+		return
+	
+	if state_machine:
+		if current_state == "EnemyChaseState":
+			direction = player_node.position.direction_to(self.position)
+		if current_state == "EnemyWanderState":
+			direction = _direction
+	
+	direction = _direction
+
 func attack():
 	pass

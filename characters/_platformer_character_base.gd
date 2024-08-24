@@ -12,13 +12,11 @@ signal is_alive_changed(alive_state: bool)
 #signal health_changed(old_value: int, new_value: int)
 ## Emit damage received
 signal damage_received(damage_amount)
-## Emit state change
-#signal state_changed(old_state: STATE, new_state: STATE)
+
 
 @export_category("Nodes")
 @export var character_sprite: AnimatedSprite2D
 @export var state_machine: StateMachine
-
 
 @export_category("Movement Variables")
 @export var speed_init: float
@@ -36,16 +34,16 @@ signal damage_received(damage_amount)
 @export var damageable: bool = true
 
 var self_id: String
-
+var current_state: String
 
 # Direction change setter, emitter
-var direction: Vector2:
-	set(value):
-		if direction == value:
-			return
-		#if direction.x * value.x <= 0: # Emit if X changed
-		direction = value
-		direction_changed.emit(direction)
+var direction: Vector2
+	#set(value):
+		#if direction == value:
+			#return
+		##if direction.x * value.x <= 0: # Emit if X changed
+		#direction = value
+		#direction_changed.emit(direction)
 
 # Set is_alive and emit when changed
 var is_alive: bool = true:
@@ -69,6 +67,8 @@ var is_alive: bool = true:
 
 
 func _ready() -> void:
+	if state_machine:
+		state_machine.connect("current_state_changed", _update_state_info)
 	# Apply stats. Using self_id from _init() on instances
 	initilize_stats()
 
@@ -144,3 +144,10 @@ func _character_death() -> void:
 	print("DIED! ", self.name)
 	
 	#queue_free()
+
+
+# Update state.name when changed.
+# Signal from state_machine
+func _update_state_info(_new_state) -> void:
+	print(_new_state)
+	current_state = _new_state

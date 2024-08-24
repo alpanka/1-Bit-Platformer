@@ -22,7 +22,7 @@ var character_stats: Dictionary = {
 		"can_air_jump": false,
 		"health_init": 50,
 		"detection_length": 50,
-		"attack_range": 20.0,
+		"attack_range": 30.0,
 		"damage_amount": 20
 	}
 }

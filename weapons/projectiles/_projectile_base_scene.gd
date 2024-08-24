@@ -13,6 +13,7 @@ var self_id: String
 @onready var hitbox_controller: HitboxController = $HitboxController
 
 func _physics_process(delta: float) -> void:
+	# Run upon collision
 	if get_contact_count() >= 1:
 		_on_projectile_colliding()
 
@@ -27,6 +28,7 @@ func launch_projectile(_launch_direction: Vector2) -> void:
 	linear_velocity = _launch_direction * initial_velocity
 
 
+# Queue fee on collision
 func _on_projectile_colliding() -> void:
 	self.freeze = true
 	

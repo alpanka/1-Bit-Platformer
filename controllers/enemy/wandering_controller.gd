@@ -13,33 +13,34 @@ extends Node2D
 @onready var wander_direction_resetter: Timer = $WanderDirectionResetter
 
 
-const RIGHT: 	Vector2i = Vector2.RIGHT
-const LEFT: 	Vector2i = Vector2.LEFT
-const STOP: 	Vector2i = Vector2.ZERO
+const RIGHT: 	Vector2 = Vector2.RIGHT
+const LEFT: 	Vector2 = Vector2.LEFT
+const STOP: 	Vector2 = Vector2.ZERO
 
 var character: PlatformerCharacterBase
 
 
 func _ready() -> void:
 	character = get_owner()
-	character.direction = [LEFT, RIGHT].pick_random()
+	character.update_direction([LEFT, RIGHT].pick_random())
 
 
 func _process(_delta: float) -> void:
-	_collision_checker()
+	character.update_direction(_collision_checker())
 
 
 ## Check collision of RayCast2Ds and determine direction.
 func _collision_checker():
 	if not ray_cast_floor_right.is_colliding():
-		character.direction = LEFT
+		return LEFT
 	if not ray_cast_floor_left.is_colliding():
-		character.direction = RIGHT
+		return RIGHT
 
 	if ray_cast_wall_right.is_colliding():
-		character.direction = LEFT
+		return LEFT
 	if ray_cast_wall_left.is_colliding():
-		character.direction = RIGHT
+		return RIGHT
+
 
 # TODO add a timer to reset direction
 func _on_direction_resetter_timeout() -> void:

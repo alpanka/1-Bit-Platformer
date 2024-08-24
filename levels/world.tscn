@@ -12,9 +12,8 @@
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="EnemyInvader1" parent="Enemies" node_paths=PackedStringArray("state_machine") instance=ExtResource("3_nvbbs")]
+[node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
 position = Vector2(66.0841, -1.8015)
-state_machine = NodePath("StateMachine")
 
 [node name="Player" parent="." instance=ExtResource("2_wg6wd")]
 position = Vector2(-48, -4)

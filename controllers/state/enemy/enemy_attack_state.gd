@@ -5,7 +5,7 @@ extends State
 
 func update_process(_delta):
 	pass
-	#if actor.can_attack():
-		#actor.attack()
-	#else:
-		#state_switched.emit(self, "EnemyChaseState")
+	if actor.can_attack:
+		actor.attack()
+	else:
+		state_switched.emit(self, "EnemyChaseState")

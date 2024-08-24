@@ -3,10 +3,13 @@
 class_name  StateMachine
 extends Node
 
-@export var states_dict: Dictionary = {}
-@export var initial_state: State
-@export var current_state: State
 
+signal current_state_changed
+
+var states_dict: Dictionary = {}
+var current_state: State
+
+@export var initial_state: State
 @export var state_label: Label
 
 
@@ -19,9 +22,13 @@ func _ready() -> void:
 	if initial_state:
 		initial_state.state_enter()
 		current_state = initial_state
+	elif states_dict["EnemyIdleState"]:
+		current_state = states_dict["EnemyIdleState"]
+		current_state.state_enter()
 	else:
 		print("Failed to init a state of ", self.name)
 
+	print(current_state.name)
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -48,6 +55,7 @@ func change_state(source_state: State, new_state_name: String):
 		print("New state is empty! ", new_state_name)
 		return
 	
+	current_state_changed.emit(new_state.name)
 	new_state.state_enter()
 	
 	current_state = new_state
@@ -61,7 +69,7 @@ func change_state_forced(new_state_name: String):
 		return
 
 	if current_state == new_state:
-		print("Attempt to push current state. Aborted.")
+		print("Attempt to re-enter into current state. Aborted!")
 		return
 	
 	if current_state:
