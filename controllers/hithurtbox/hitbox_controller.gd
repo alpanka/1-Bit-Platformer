@@ -14,10 +14,6 @@ func _ready() -> void:
 	self.emit_signal("area_entered")
 
 
-func _update_controller_area():
-	pass
-
-
 func _check_owner_type():
 	if owner_node is PlatformerCharacterBase:
 		owner_type = "PlatformerCharacter"

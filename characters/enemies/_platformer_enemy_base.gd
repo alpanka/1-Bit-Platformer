@@ -9,13 +9,11 @@ extends PlatformerCharacterBase
 @export var attack_range: float
 @export var damage_amount: float
 
-@export var state_label_active: bool = true
-
 var player_node: PlayerCharacter
 
 
 func _process(_delta: float) -> void:
-	_set_state_label_text()
+	pass
 
 
 func initilize_stats():
@@ -29,9 +27,3 @@ func initilize_stats():
 
 func attack():
 	pass
-
-
-func _set_state_label_text():
-	if state_machine.current_state:
-		if state_label_active:
-			state_label.text = state_machine.current_state.name

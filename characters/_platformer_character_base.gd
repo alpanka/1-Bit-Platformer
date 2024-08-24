@@ -18,7 +18,7 @@ signal damage_received(damage_amount)
 @export_category("Nodes")
 @export var character_sprite: AnimatedSprite2D
 @export var state_machine: StateMachine
-@export var state_label: Label
+
 
 @export_category("Movement Variables")
 @export var speed_init: float
@@ -35,8 +35,8 @@ signal damage_received(damage_amount)
 @export var current_health: int
 
 
-
 var self_id: String
+
 
 # Direction change setter, emitter
 var direction: Vector2:

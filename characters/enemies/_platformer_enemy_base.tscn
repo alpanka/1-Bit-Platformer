@@ -1,9 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=14 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="FontFile" uid="uid://sgnyjhp3i1ji" path="res://assets/fonts/m5x7.ttf" id="2_2bte3"]
 [ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="2_2gdci"]
-[ext_resource type="PackedScene" uid="uid://blmc7ul71me43" path="res://controllers/hithurtbox/hitbox_controller.tscn" id="3_mo3h0"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
 [ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/enemy/wandering_controller.tscn" id="3_uj1y5"]
 [ext_resource type="PackedScene" uid="uid://bxlaivccsrp1m" path="res://controllers/enemy/detection_controller.tscn" id="5_sqngw"]
@@ -17,25 +16,11 @@
 [sub_resource type="LabelSettings" id="LabelSettings_1ao4x"]
 font = ExtResource("2_2bte3")
 
-[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite", "state_machine", "state_label")]
+[node name="PlatformerEnemyBase" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite")]
 collision_layer = 16
 collision_mask = 531
 script = ExtResource("1_mkti6")
 character_sprite = NodePath("AnimatedSprite2D")
-state_machine = NodePath("StateMachine")
-state_label = NodePath("StateLabel")
-
-[node name="StateLabel" type="Label" parent="."]
-offset_left = -22.0
-offset_top = -19.0
-offset_right = 66.0
-offset_bottom = -6.0
-scale = Vector2(0.5, 0.5)
-theme_override_fonts/font = ExtResource("2_2bte3")
-text = "STATE"
-label_settings = SubResource("LabelSettings_1ao4x")
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -8)
@@ -43,8 +28,6 @@ position = Vector2(0, -8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="Controllers" type="Node2D" parent="."]
-
-[node name="HitboxController" parent="Controllers" instance=ExtResource("3_mo3h0")]
 
 [node name="HurtboxController" parent="Controllers" instance=ExtResource("2_2gdci")]
 
@@ -59,9 +42,22 @@ character = NodePath("../..")
 [node name="EnemyAttackController" type="Node2D" parent="Controllers"]
 script = ExtResource("6_ehcgn")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state", "state_label")]
 script = ExtResource("12_332qh")
 initial_state = NodePath("EnemyIdleState")
+state_label = NodePath("StateLabel")
+
+[node name="StateLabel" type="Label" parent="StateMachine"]
+offset_left = -22.0
+offset_top = -19.0
+offset_right = 66.0
+offset_bottom = -6.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_2bte3")
+text = "STATE"
+label_settings = SubResource("LabelSettings_1ao4x")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="EnemyIdleState" type="Node" parent="StateMachine"]
 script = ExtResource("13_ix8x4")
@@ -74,3 +70,5 @@ script = ExtResource("17_7g6w7")
 
 [node name="EnemyAttackState" type="Node" parent="StateMachine"]
 script = ExtResource("19_i3cch")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

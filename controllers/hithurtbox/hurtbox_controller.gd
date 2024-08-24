@@ -17,3 +17,8 @@ func got_hit(_damage_amount: int) -> void:
 		# Damage cooldown
 		cooled_down = false
 		cooldown_timer.start()
+
+
+## Turn damage/hit being applied on
+func _on_cooldown_timer_timeout() -> void:
+	cooled_down = true

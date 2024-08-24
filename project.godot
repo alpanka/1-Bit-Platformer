@@ -26,10 +26,6 @@ BeehaveGlobalDebugger="*res://addons/beehave/debug/global_debugger.gd"
 
 window/stretch/mode="canvas_items"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
-
 [file_customization]
 
 folder_colors={
@@ -108,6 +104,8 @@ attack={
 2d_physics/layer_1="Ground"
 2d_physics/layer_2="Projectile"
 2d_physics/layer_5="Enemy"
+2d_physics/layer_6="Hitbox"
+2d_physics/layer_7="Hurtbox"
 2d_physics/layer_10="Player"
 
 [rendering]

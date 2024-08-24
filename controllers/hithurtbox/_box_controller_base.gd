@@ -26,7 +26,3 @@ func controller_area_init() -> void:
 	controller_area.shape = collision_area.shape
 	controller_area.position = collision_area.position
 	controller_area.debug_color = Color(0.8, 0, 0, 0.1)
-
-## Turn damage/hit being applied on
-func _on_cooldown_timer_timeout() -> void:
-	cooled_down = true

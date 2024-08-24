@@ -7,12 +7,12 @@ extends Node
 @export var initial_state: State
 @export var current_state: State
 
+@export var state_label: Label
+
 
 func _ready() -> void:
 	for child in get_children():
 		if child is State:
-			print(child)
-			print(child.name)
 			states_dict[child.name] = child
 			child.state_switched.connect(change_state)
 	
@@ -26,6 +26,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if current_state:
 		current_state.update_process(delta)
+	
+	if current_state and state_label:
+		state_label.text = current_state.name
 
 
 func _physics_process(delta: float) -> void:
