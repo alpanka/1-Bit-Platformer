@@ -5,8 +5,10 @@
 
 [node name="ProjectileBase" type="RigidBody2D"]
 collision_layer = 2
-collision_mask = 513
+collision_mask = 529
 gravity_scale = 0.25
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_vn60t")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -15,3 +17,5 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="HitboxController" parent="." instance=ExtResource("2_ayand")]
+collision_layer = 2
+collision_mask = 17

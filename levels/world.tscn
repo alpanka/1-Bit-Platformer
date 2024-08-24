@@ -6,6 +6,8 @@
 
 [node name="World" type="Node2D"]
 
+[node name="Level01" parent="." instance=ExtResource("1_ncbtk")]
+
 [node name="Projectiles" type="Node2D" parent="." groups=["Projectiles"]]
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -14,10 +16,5 @@
 position = Vector2(66.0841, -1.8015)
 state_machine = NodePath("StateMachine")
 
-[node name="Level01" parent="." instance=ExtResource("1_ncbtk")]
-
 [node name="Player" parent="." instance=ExtResource("2_wg6wd")]
 position = Vector2(-48, -4)
-
-[editable path="Level01"]
-[editable path="Player"]

@@ -12,9 +12,9 @@ var self_id: String
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var hitbox_controller: HitboxController = $HitboxController
 
-
-#func _ready() -> void:
-	#initilize_stats()
+func _physics_process(delta: float) -> void:
+	if get_contact_count() >= 1:
+		_on_projectile_colliding()
 
 
 func initilize_stats() -> void:
@@ -25,3 +25,11 @@ func initilize_stats() -> void:
 
 func launch_projectile(_launch_direction: Vector2) -> void:
 	linear_velocity = _launch_direction * initial_velocity
+
+
+func _on_projectile_colliding() -> void:
+	self.freeze = true
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 0.005), 0.3)
+	queue_free()

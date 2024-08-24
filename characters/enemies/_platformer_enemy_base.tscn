@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=3 uid="uid://ct1cbjvyu4prw"]
+[gd_scene load_steps=15 format=3 uid="uid://ct1cbjvyu4prw"]
 
 [ext_resource type="Script" path="res://characters/enemies/_platformer_enemy_base.gd" id="1_mkti6"]
 [ext_resource type="FontFile" uid="uid://sgnyjhp3i1ji" path="res://assets/fonts/m5x7.ttf" id="2_2bte3"]
 [ext_resource type="PackedScene" uid="uid://satpe1dl3wru" path="res://controllers/damage_hitbox/damage_receiver.tscn" id="2_5ate2"]
+[ext_resource type="PackedScene" uid="uid://uhh0aajsy8sa" path="res://controllers/damage_hitbox/hitbox_controller.tscn" id="2_qov3r"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_sow3w"]
 [ext_resource type="PackedScene" uid="uid://b0p6kq02llw75" path="res://controllers/enemy/wandering_controller.tscn" id="3_uj1y5"]
 [ext_resource type="PackedScene" uid="uid://bxlaivccsrp1m" path="res://controllers/enemy/detection_controller.tscn" id="5_sqngw"]
@@ -29,7 +30,13 @@ position = Vector2(0, -8)
 
 [node name="Controllers" type="Node2D" parent="."]
 
+[node name="HitboxController" parent="Controllers" instance=ExtResource("2_qov3r")]
+collision_layer = 48
+collision_mask = 576
+
 [node name="DamageReceiver" parent="Controllers" instance=ExtResource("2_5ate2")]
+collision_layer = 80
+collision_mask = 34
 
 [node name="EnemyAttackController" type="Node2D" parent="Controllers"]
 script = ExtResource("6_ehcgn")
