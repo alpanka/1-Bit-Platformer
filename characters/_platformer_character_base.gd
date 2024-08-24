@@ -33,7 +33,7 @@ signal damage_received(damage_amount)
 @export_category("Health Variables")
 @export var health_init: int
 @export var current_health: int
-
+@export var damageable: bool = true
 
 var self_id: String
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgc7narjno60k"]
+[gd_scene load_steps=7 format=3 uid="uid://dgc7narjno60k"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_2xyhl"]
 [ext_resource type="SpriteFrames" uid="uid://c0ocbb5gybv11" path="res://characters/player/player_sprite_frames.tres" id="1_m0qnb"]
 [ext_resource type="Script" path="res://controllers/animation_controller.gd" id="3_2s5bl"]
 [ext_resource type="Script" path="res://controllers/input_controller.gd" id="5_e3qmu"]
 [ext_resource type="PackedScene" uid="uid://dnmt7wbj5ir78" path="res://controllers/shooter_controller.tscn" id="5_kgl0d"]
-[ext_resource type="PackedScene" uid="uid://c4dhxoeil1hmd" path="res://controllers/hithurtbox/hurtbox_controller.tscn" id="6_xjwpo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sklj"]
 radius = 4.0
@@ -29,8 +28,6 @@ autoplay = "idle"
 zoom = Vector2(4, 4)
 
 [node name="Controllers" type="Node2D" parent="."]
-
-[node name="HurtboxController" parent="Controllers" instance=ExtResource("6_xjwpo")]
 
 [node name="InputController" type="Node" parent="Controllers" node_paths=PackedStringArray("player", "shooter_controller")]
 script = ExtResource("5_e3qmu")

@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4dhxoeil1hmd"]
-
-[ext_resource type="PackedScene" uid="uid://uhh0aajsy8sa" path="res://controllers/hithurtbox/_box_controller_base.tscn" id="1_bdiuy"]
-[ext_resource type="Script" path="res://controllers/hithurtbox/hurtbox_controller.gd" id="1_h7fqd"]
-
-[node name="HurtboxController" instance=ExtResource("1_bdiuy")]
-script = ExtResource("1_h7fqd")

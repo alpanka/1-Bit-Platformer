@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://satpe1dl3wru"]
+
+[ext_resource type="Script" path="res://controllers/damage_hitbox/damage_receiver.gd" id="1_t2yxm"]
+
+[node name="DamageReceiver" type="Area2D"]
+script = ExtResource("1_t2yxm")
+
+[node name="DamageArea" type="CollisionShape2D" parent="."]

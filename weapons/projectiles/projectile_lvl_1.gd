@@ -4,4 +4,7 @@ extends ProjectileBase
 
 func _init() -> void:
 	self_id = "ProjectileLvl1"
-	#initilize_stats()
+
+
+func _ready() -> void:
+	initilize_stats()

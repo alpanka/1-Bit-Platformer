@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://uhh0aajsy8sa"]
+
+[ext_resource type="Script" path="res://controllers/damage_hitbox/hitbox_controller.gd" id="1_20j4n"]
+
+[node name="HitboxController" type="Area2D"]
+script = ExtResource("1_20j4n")
+
+[node name="HitboxArea" type="CollisionShape2D" parent="."]
+
+[node name="CooldownTimer" type="Timer" parent="."]

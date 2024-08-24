@@ -13,9 +13,8 @@ var self_id: String
 @onready var hitbox_controller: HitboxController = $HitboxController
 
 
-func _ready() -> void:
-	initilize_stats()
-	hitbox_controller.connect("area_entered", _on_hitbox_area_entered)
+#func _ready() -> void:
+	#initilize_stats()
 
 
 func initilize_stats() -> void:
@@ -26,8 +25,3 @@ func initilize_stats() -> void:
 
 func launch_projectile(_launch_direction: Vector2) -> void:
 	linear_velocity = _launch_direction * initial_velocity
-
-
-func _on_hitbox_area_entered(area: Area2D) -> void:
-	if area is HurtboxController:
-		area.got_hit(damage_amount)
