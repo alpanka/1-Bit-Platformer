@@ -24,6 +24,10 @@ Stats="*res://globals/Stats.gd"
 
 window/stretch/mode="canvas_items"
 
+[editor]
+
+movie_writer/movie_file="X:/sample.avi"
+
 [file_customization]
 
 folder_colors={

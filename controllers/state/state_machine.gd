@@ -11,6 +11,7 @@ var current_state: State
 
 @export var initial_state: State
 @export var state_label: Label
+@export var print_names: bool = true
 
 
 func _ready() -> void:
@@ -28,7 +29,6 @@ func _ready() -> void:
 	else:
 		print("Failed to init a state of ", self.name)
 
-	print(current_state.name)
 
 func _process(delta: float) -> void:
 	if current_state:
@@ -59,6 +59,10 @@ func change_state(source_state: State, new_state_name: String):
 	new_state.state_enter()
 	
 	current_state = new_state
+	
+	if print_names:
+		print(current_state.name)
+
 
 # Use when absolutely needed. Like for "DeathState"
 func change_state_forced(new_state_name: String):

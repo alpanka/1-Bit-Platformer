@@ -22,6 +22,7 @@ func apply_damage(damage):
 
 func _controller_area_init() -> void:
 	if controller_area_auto_set == false:
+		damage_area.debug_color = Color(0.8, 0, 0, 0.1)
 		return
 	
 	# Find parent's collision shape

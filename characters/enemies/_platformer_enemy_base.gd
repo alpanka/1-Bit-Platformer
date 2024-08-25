@@ -1,6 +1,7 @@
 class_name PlatformerEnemyBase
 extends PlatformerCharacterBase
 
+
 # Direction in queue before it is assigned to direction
 var direction_target: Vector2:
 	set(target):
@@ -56,16 +57,18 @@ func direction_handler(_target: Vector2) -> void:
 	self.direction = _target
 
 
-#TODO needs work
+#TODO Get back to it. Could be better
 func attack():
-	var target_pos: Vector2
-	var self_pos: Vector2
-	target_pos = player_node.global_position
-	self_pos = global_position
+	var attack_pos: Vector2 = self.global_position
 	
 	if can_attack:
-		self.velocity.x += 100
-
+		current_speed = 600
+		await get_tree().create_timer(0.2).timeout
+		
+		var tween: Tween = get_tree().create_tween()
+		tween.tween_property(self, "position", attack_pos, 0.1)
+		
+		current_speed = speed_init
 
 
 # Update state.name when changed.

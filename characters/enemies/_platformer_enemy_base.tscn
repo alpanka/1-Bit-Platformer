@@ -53,6 +53,7 @@ character = NodePath("../..")
 [node name="StateMachine" type="Node2D" parent="." node_paths=PackedStringArray("state_label")]
 script = ExtResource("12_332qh")
 state_label = NodePath("StateLabel")
+print_names = false
 
 [node name="StateLabel" type="Label" parent="StateMachine"]
 offset_left = -22.0

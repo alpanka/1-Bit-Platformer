@@ -28,7 +28,9 @@ func _ready() -> void:
 ## Apply them to Controller area shape.
 func _controller_area_init() -> void:
 	owner_node = get_owner()
+	
 	if controller_area_auto_set == false:
+		controller_area.debug_color = Color(0.8, 0, 0, 0.1)
 		return
 	
 	# Find parent's collision shape

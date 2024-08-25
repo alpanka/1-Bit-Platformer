@@ -12,6 +12,8 @@ radius = 4.0
 height = 10.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite") groups=["Player"]]
+collision_layer = 512
+collision_mask = 17
 script = ExtResource("1_2xyhl")
 character_sprite = NodePath("AnimatedSprite2D")
 
@@ -26,7 +28,7 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(5, 5)
 
 [node name="Controllers" type="Node2D" parent="."]
 

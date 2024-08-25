@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dyktuqt3hoxfw"]
+[gd_scene load_steps=6 format=3 uid="uid://dyktuqt3hoxfw"]
 
 [ext_resource type="PackedScene" uid="uid://ct1cbjvyu4prw" path="res://characters/enemies/_platformer_enemy_base.tscn" id="1_gwy1k"]
 [ext_resource type="SpriteFrames" uid="uid://bsdu344byhlqb" path="res://characters/enemies/enemy_invader_sprite.tres" id="2_2ypwj"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xrx5y"]
 radius = 5.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n3u64"]
+radius = 6.0
 
 [node name="EnemyInvader" instance=ExtResource("1_gwy1k")]
 script = ExtResource("2_hu5g1")
@@ -23,7 +26,14 @@ shape = SubResource("CircleShape2D_xrx5y")
 [node name="HitboxController" parent="Controllers" index="0"]
 collision_layer = 16
 collision_mask = 512
+controller_area_auto_set = false
+
+[node name="HitboxArea" parent="Controllers/HitboxController" index="0"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_n3u64")
 
 [node name="DamageReceiver" parent="Controllers" index="1"]
 collision_layer = 16
 collision_mask = 2
+
+[editable path="Controllers/HitboxController"]

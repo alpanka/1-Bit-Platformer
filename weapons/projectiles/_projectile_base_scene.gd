@@ -34,4 +34,5 @@ func _on_projectile_colliding() -> void:
 	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(animated_sprite, "modulate", Color(1, 1, 1, 0.005), 0.3)
+	await tween.finished
 	queue_free()
