@@ -78,5 +78,3 @@ script = ExtResource("17_7g6w7")
 
 [node name="EnemyAttackState" type="Node" parent="StateMachine"]
 script = ExtResource("19_i3cch")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
