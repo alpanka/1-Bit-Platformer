@@ -17,9 +17,11 @@ var direction_target: Vector2:
 enum FOCUS {FREE, CHASE, ATTACK}
 var current_focus
 
+# Variables to see if player in range for CHASE
 var player_in_range: bool
 var detection_length: int
 
+# Variables to see if enemy can ATTACK
 var can_attack: bool
 var attack_range: float
 var damage_amount: float
@@ -51,29 +53,28 @@ func initilize_stats():
 # Direction handler. Setting current direction based on state
 # direction and direction_target
 func direction_handler(_target: Vector2) -> void:
-	print("3: direction change ", direction, " ", _target)
 	self.direction = _target
-	print("4: direction set ", direction)
 
 
 #TODO needs work
 func attack():
-	var attack_target: Vector2
-	var current_pos: Vector2
-	attack_target = player_node.position - Vector2(20, 0)
+	var target_pos: Vector2
+	var self_pos: Vector2
+	target_pos = player_node.global_position
+	self_pos = global_position
 	
 	if can_attack:
-		var tween: Tween = get_tree().create_tween()
-		tween.tween_property(self, "position", attack_target, 0.3)
-		tween.tween_property(self, "position", current_pos, 0.1)
+		self.velocity.x += 100
+
 
 
 # Update state.name when changed.
 # Signal from state_machine
 func _update_enemy_state_info(_new_state) -> void:
-	print(_new_state)
+	# Set current state name
 	current_state = _new_state
-	print(current_focus)
+	
+	# Update focus based on current_state
 	match current_state:
 		"EnemyIdleState":
 			current_focus = FOCUS.FREE
@@ -83,5 +84,3 @@ func _update_enemy_state_info(_new_state) -> void:
 			current_focus = FOCUS.CHASE
 		"EnemyAttackState":
 			current_focus = FOCUS.ATTACK
-
-	print(current_focus)

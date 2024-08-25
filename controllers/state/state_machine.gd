@@ -45,7 +45,7 @@ func _physics_process(delta: float) -> void:
 
 func change_state(source_state: State, new_state_name: String):
 	if source_state != current_state:
-		print("Invalid change_state attempt on from ", \
+		print("Invalid change_state attempt from ", \
 		source_state.name, " to ", new_state_name)
 		return
 

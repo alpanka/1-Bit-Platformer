@@ -23,6 +23,7 @@ func update_process(_delta):
 func _set_idle_timer():
 	add_child(idle_timer)
 	idle_timer.name = "idle_timer"
+	idle_timer.one_shot = true
 	idle_timer.connect("timeout", _on_idle_timer_timeout)
 	idle_timer.wait_time = idle_duration
 	idle_timer.start()
