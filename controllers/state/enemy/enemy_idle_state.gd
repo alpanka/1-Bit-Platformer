@@ -2,7 +2,7 @@
 class_name EnemyIdleState
 extends State
 
-@export var idle_duration: float = 1.0
+@export var idle_duration: float = 0.5
 
 
 func state_enter():

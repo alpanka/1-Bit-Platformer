@@ -11,3 +11,5 @@ func state_enter():
 func update_process(_delta):
 	if actor.player_in_range:
 		state_switched.emit(self, "EnemyChaseState")
+	elif actor.can_attack:
+		state_switched.emit(self, "EnemyAttackState")

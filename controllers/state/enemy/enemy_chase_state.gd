@@ -20,5 +20,3 @@ func update_process(_delta):
 		state_switched.emit(self, "EnemyWanderState")
 	if actor.can_attack == true:
 		state_switched.emit(self, "EnemyAttackState")
-	
-	
