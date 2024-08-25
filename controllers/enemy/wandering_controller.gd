@@ -22,24 +22,28 @@ var character: PlatformerCharacterBase
 
 func _ready() -> void:
 	character = get_owner()
-	character.update_direction([LEFT, RIGHT].pick_random())
+	#character.direction_target = [LEFT, RIGHT].pick_random()
 
 
 func _process(_delta: float) -> void:
-	character.update_direction(_collision_checker())
+	_collision_checker()
 
 
 ## Check collision of RayCast2Ds and determine direction.
 func _collision_checker():
+	# Return if current_focus is not set to FREE
+	if character.current_focus != 0:
+		return
+
 	if not ray_cast_floor_right.is_colliding():
-		return LEFT
+		character.direction_target = LEFT
 	if not ray_cast_floor_left.is_colliding():
-		return RIGHT
+		character.direction_target = RIGHT
 
 	if ray_cast_wall_right.is_colliding():
-		return LEFT
+		character.direction_target = LEFT
 	if ray_cast_wall_left.is_colliding():
-		return RIGHT
+		character.direction_target = RIGHT
 
 
 # TODO add a timer to reset direction

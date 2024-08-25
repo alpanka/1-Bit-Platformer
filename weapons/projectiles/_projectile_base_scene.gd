@@ -12,7 +12,7 @@ var self_id: String
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var hitbox_controller: HitboxController = $HitboxController
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# Run upon collision
 	if get_contact_count() >= 1:
 		_on_projectile_colliding()
