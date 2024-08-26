@@ -28,7 +28,7 @@ animation = &"walk"
 autoplay = "idle"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(5, 5)
+zoom = Vector2(4, 4)
 
 [node name="Controllers" type="Node2D" parent="."]
 

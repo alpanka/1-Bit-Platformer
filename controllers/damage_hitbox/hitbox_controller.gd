@@ -10,7 +10,7 @@ extends Area2D
 @onready var controller_area: CollisionShape2D = $HitboxArea
 @onready var cooldown_timer: Timer = $CooldownTimer
 
-var cool_down_duration: float = 0.5
+var cool_down_duration: float = 0.2
 var cooled_down: bool = true
 
 var collision_area: CollisionShape2D

@@ -1,6 +1,7 @@
 class_name WanderingController
 extends Node2D
 
+
 # RayCast for wall collision
 @onready var ray_cast_wall_right: RayCast2D = $RayCastWallRight
 @onready var ray_cast_wall_left: RayCast2D = $RayCastWallLeft
@@ -12,12 +13,12 @@ extends Node2D
 # Direction reset timer
 @onready var wander_direction_resetter: Timer = $WanderDirectionResetter
 
-
 const RIGHT: 	Vector2 = Vector2.RIGHT
 const LEFT: 	Vector2 = Vector2.LEFT
 const STOP: 	Vector2 = Vector2.ZERO
 
 var character: PlatformerCharacterBase
+var wander_target_dir: Vector2
 
 
 func _ready() -> void:
@@ -36,15 +37,18 @@ func _collision_checker():
 		return
 
 	if not ray_cast_floor_right.is_colliding():
-		character.direction_target = LEFT
+		wander_target_dir = LEFT
 	if not ray_cast_floor_left.is_colliding():
-		character.direction_target = RIGHT
+		wander_target_dir = RIGHT
 
 	if ray_cast_wall_right.is_colliding():
-		character.direction_target = LEFT
+		wander_target_dir = LEFT
 	if ray_cast_wall_left.is_colliding():
-		character.direction_target = RIGHT
+		wander_target_dir = RIGHT
+	if not ray_cast_wall_left.is_colliding() and not ray_cast_wall_right.is_colliding():
+		[LEFT, RIGHT].pick_random()
 
+	character.direction_target = wander_target_dir
 
 # TODO add a timer to reset direction
 func _on_direction_resetter_timeout() -> void:

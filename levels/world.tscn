@@ -12,8 +12,8 @@
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
-position = Vector2(66.0841, -1.8015)
+[node name="EnemyInvader" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(29, 0)
 
 [node name="Player" parent="." instance=ExtResource("2_wg6wd")]
-position = Vector2(-48, -4)
+position = Vector2(-109, -6)

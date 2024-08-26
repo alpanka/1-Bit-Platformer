@@ -9,20 +9,22 @@ extends Area2D
 @onready var damage_area: CollisionShape2D = $DamageArea
 
 var collision_area: CollisionShape2D
-var owner_node: Node2D = get_owner()
+var owner_node: Node2D
 
 
 func _ready() -> void:
 	_controller_area_init()
 
 
-func apply_damage(damage):
-	print("damage on ", damage, " ", get_owner().name)
+func apply_damage(_damage):
+	owner_node.apply_damage(_damage)
 
 
 func _controller_area_init() -> void:
+	damage_area.debug_color = Color(0.8, 0, 0, 0.1)
+	owner_node = get_owner()
+	
 	if controller_area_auto_set == false:
-		damage_area.debug_color = Color(0.8, 0, 0, 0.1)
 		return
 	
 	# Find parent's collision shape

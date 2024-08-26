@@ -106,9 +106,10 @@ func apply_damage(_damage_amount):
 	
 	if current_health >= 0:
 		current_health = current_health - _damage_amount
-		print(_damage_amount, " damage on ", self.name)
+		print(self.name, " damage ", _damage_amount, " - ", current_health )
 	
 	if current_health <= 0:
+		print("DIED ", self.name)
 		_character_death()
 
 

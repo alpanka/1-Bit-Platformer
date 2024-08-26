@@ -23,6 +23,7 @@ func _ready() -> void:
 	if initial_state:
 		initial_state.state_enter()
 		current_state = initial_state
+	# Set initial state if not already set on @export
 	elif states_dict["EnemyIdleState"]:
 		current_state = states_dict["EnemyIdleState"]
 		current_state.state_enter()
