@@ -12,8 +12,26 @@
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="EnemyInvader" parent="Enemies" instance=ExtResource("3_nvbbs")]
+[node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
 position = Vector2(29, 0)
+
+[node name="EnemyInvader2" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(-58, -64)
+
+[node name="EnemyInvader3" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(9, -96)
+
+[node name="EnemyInvader4" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(137, -112)
+
+[node name="EnemyInvader5" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(168, -48)
+
+[node name="EnemyInvader6" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(216, -32)
+
+[node name="EnemyInvader7" parent="Enemies" instance=ExtResource("3_nvbbs")]
+position = Vector2(347, -32)
 
 [node name="Player" parent="." instance=ExtResource("2_wg6wd")]
 position = Vector2(-109, -6)

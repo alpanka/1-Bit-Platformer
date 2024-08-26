@@ -14,6 +14,8 @@ func update_process(_delta):
 	
 	# Attack if in range and cooled_down
 	if actor.can_attack and cooled_down:
+		actor.character_sprite.play(Name.anim_attack)
+		
 		actor.attack()
 		cooled_down = false
 		await get_tree().create_timer(attack_cooldown_dur).timeout

@@ -17,8 +17,11 @@ var attack:	StringName = "attack"
 ## Animation names
 var anim_idle:		StringName = "idle"
 var anim_walk:		StringName = "walk"
-var anim_dead:		StringName = "death"
+var anim_detect:	StringName = "detect"
+var anim_chase:		StringName = "chase"
+var anim_attack:	StringName = "attack"
 var anim_got_hit:	StringName = "got_hit"
+var anim_dead:		StringName = "death"
 
 ## Scenes to instantiate/reference
 ## Projectiles

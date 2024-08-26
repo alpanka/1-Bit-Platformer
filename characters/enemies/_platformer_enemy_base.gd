@@ -87,3 +87,18 @@ func _update_enemy_state_info(_new_state) -> void:
 			current_focus = FOCUS.CHASE
 		"EnemyAttackState":
 			current_focus = FOCUS.ATTACK
+
+
+func _character_death() -> void:
+	var death_timer: float = 0.8
+	print("DIED! ", self.name)
+	
+	is_alive = false
+	character_sprite.play("death")
+	
+	var tween: Tween = get_tree().create_tween()
+	tween.tween_property(character_sprite, "self_modulate", Color(1, 1, 1, 0.2), death_timer)
+	
+	await get_tree().create_timer(death_timer)
+
+	queue_free()

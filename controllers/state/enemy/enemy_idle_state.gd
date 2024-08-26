@@ -6,7 +6,7 @@ extends State
 
 
 func state_enter():
-	actor.character_sprite.play("idle")
+	actor.character_sprite.play(Name.anim_idle)
 	
 	await get_tree().create_timer(idle_duration).timeout
 	state_exit()
