@@ -46,7 +46,8 @@ func _collision_checker():
 	if ray_cast_wall_left.is_colliding():
 		wander_target_dir = RIGHT
 	if not ray_cast_wall_left.is_colliding() and not ray_cast_wall_right.is_colliding():
-		[LEFT, RIGHT].pick_random()
+		if not character.direction:
+			wander_target_dir = [LEFT, RIGHT].pick_random()
 
 	character.direction_target = wander_target_dir
 
