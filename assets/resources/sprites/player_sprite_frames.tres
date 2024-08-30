@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://c7w6qw7tgc1a"]
+
+[ext_resource type="Texture2D" uid="uid://dd164e8unvtpq" path="res://assets/1-BitPlatformerPack/monochrome_tilemap_transparent_packed.png" id="1_vee5o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8k5l8"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(96, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuvoj"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(0, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhioy"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(16, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w46gg"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(32, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ast0"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(48, 192, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nllq2"]
+atlas = ExtResource("1_vee5o")
+region = Rect2(64, 192, 16, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8k5l8")
+}],
+"loop": false,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuvoj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhioy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w46gg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ast0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nllq2")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

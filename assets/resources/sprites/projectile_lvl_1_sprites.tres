@@ -1,17 +1,17 @@
-[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://5hit80bskt1o"]
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://beghfa7f2g2f1"]
 
-[ext_resource type="Texture2D" uid="uid://dd164e8unvtpq" path="res://assets/1-BitPlatformerPack/monochrome_tilemap_transparent_packed.png" id="1_lpmju"]
+[ext_resource type="Texture2D" uid="uid://dd164e8unvtpq" path="res://assets/1-BitPlatformerPack/monochrome_tilemap_transparent_packed.png" id="1_17apd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tae62"]
-atlas = ExtResource("1_lpmju")
+atlas = ExtResource("1_17apd")
 region = Rect2(0, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3iyu2"]
-atlas = ExtResource("1_lpmju")
+atlas = ExtResource("1_17apd")
 region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xs473"]
-atlas = ExtResource("1_lpmju")
+atlas = ExtResource("1_17apd")
 region = Rect2(32, 16, 16, 16)
 
 [resource]
