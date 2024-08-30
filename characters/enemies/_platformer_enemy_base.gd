@@ -25,7 +25,7 @@ var detection_length: int
 # Variables to see if enemy can ATTACK
 var can_attack: bool
 var attack_range: float
-var damage_amount: float
+var damage: float
 
 var player_node: PlayerCharacter
 
@@ -40,7 +40,7 @@ func initilize_stats():
 	
 	detection_length = Stats.character_stats[self_id]["detection_length"]
 	attack_range = Stats.character_stats[self_id]["attack_range"]
-	damage_amount = Stats.character_stats[self_id]["damage_amount"]
+	damage = Stats.character_stats[self_id]["damage"]
 	
 	player_node = get_tree().get_first_node_in_group("Player")
 	

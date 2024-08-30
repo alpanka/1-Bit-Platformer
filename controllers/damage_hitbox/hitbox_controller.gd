@@ -52,7 +52,21 @@ func _on_area_entered(area: Area2D) -> void:
 		if cooled_down:
 			cooled_down = false
 			cooldown_timer.start()
-			area.apply_damage(owner_node.damage_amount)
+
+			var damager_stats: Dictionary
+			
+			if owner_node is PlatformerCharacterBase:
+				damager_stats = Stats.character_stats[owner_node.self_id]
+			elif owner_node is ProjectileBase:
+				damager_stats = Stats.projectile_stats[owner_node.self_id]
+			else:
+				print("Unidentified damage source.")
+			
+			area.damage_received(damager_stats)
+			
+			#area.apply_damage(Stats.projectile_stats[owner_node.self_id]) # This will send a dict
+			#area.apply_damage(ownder_node.damage)
+			#area.apply_damage(owner_node.self_id)
 
 
 func on_cooled_down_timeout() -> void:

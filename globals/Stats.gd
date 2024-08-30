@@ -23,7 +23,7 @@ var character_stats: Dictionary = {
 		"health_init": 50,
 		"detection_length": 50,
 		"attack_range": 15.0,
-		"damage_amount": 20
+		"damage": 20
 	}
 }
 
@@ -31,14 +31,18 @@ var character_stats: Dictionary = {
 var projectile_stats: Dictionary = {
 	# Projectile Base Class
 	"ProjectileBase" = {
-		"damage": 5.0,
-		"velocity": 600.0,
-		"magazine": 10
+		"damage": 0.0,
+		"velocity": 000.0,
+		"magazine": 00,
+		"knockback_force": 0.0,
+		"knockback_duration": 0.0
 	},
 	# Level-1 Projectile
 	"ProjectileLvl1" = {
 		"damage": 10.0,
 		"velocity": 600.0,
-		"magazine": 10
+		"magazine": 10,
+		"knockback_force": 80.0,
+		"knockback_duration": 0.25
 	}
 }

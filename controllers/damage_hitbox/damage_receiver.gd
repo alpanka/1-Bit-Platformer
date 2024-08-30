@@ -16,8 +16,16 @@ func _ready() -> void:
 	_controller_area_init()
 
 
-func apply_damage(_damage):
-	owner_node.apply_damage(_damage)
+## Damage recived from HitBox
+# TODO use additional properties that are set and can be set
+# Such as knockback and its duration
+#func apply_damage(_damage):
+	#owner_node.apply_damage(_damage)
+func damage_received(_hitbox_stats: Dictionary):
+	var temp = _hitbox_stats
+	print(temp)
+	owner_node.apply_damage(_hitbox_stats["damage"])
+
 
 
 func _controller_area_init() -> void:
