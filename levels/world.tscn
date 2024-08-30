@@ -14,6 +14,7 @@
 
 [node name="EnemyInvader1" parent="Enemies" instance=ExtResource("3_nvbbs")]
 position = Vector2(29, 0)
+damageable = false
 
 [node name="EnemyInvader2" parent="Enemies" instance=ExtResource("3_nvbbs")]
 position = Vector2(-58, -64)

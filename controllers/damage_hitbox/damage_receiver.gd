@@ -22,10 +22,18 @@ func _ready() -> void:
 #func apply_damage(_damage):
 	#owner_node.apply_damage(_damage)
 func damage_received(_hitbox_stats: Dictionary):
-	var temp = _hitbox_stats
-	print(temp)
+	
 	owner_node.apply_damage(_hitbox_stats["damage"])
 
+	if "knockback_force" in _hitbox_stats:
+		if _hitbox_stats["knockback_force"] > 0.0:
+			var _multiplier: float = owner_node.knockback_multiplier
+			var _knockback_direction: Vector2 = _hitbox_stats["knockback_direction"]
+			var _knockback_duration: float = _hitbox_stats["knockback_duration"]
+			print(_knockback_direction, " ", _knockback_duration)
+			_knockback_direction = _knockback_direction * _multiplier
+			
+			owner_node.apply_knockback(_knockback_direction, _knockback_duration)
 
 
 func _controller_area_init() -> void:

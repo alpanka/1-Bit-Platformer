@@ -12,7 +12,8 @@ var character_stats: Dictionary = {
 		"jump_force": 260,
 		"can_ground_jump": true,
 		"can_air_jump": true,
-		"health_init": 100
+		"health_init": 100,
+		"knockback_multiplier": 0.8,
 	},
 	"enemy_invader" = {
 		"speed_init": 10.0,
@@ -21,6 +22,7 @@ var character_stats: Dictionary = {
 		"can_ground_jump": false,
 		"can_air_jump": false,
 		"health_init": 50,
+		"knockback_multiplier": 1.25,
 		"detection_length": 50,
 		"attack_range": 15.0,
 		"damage": 20
@@ -42,7 +44,8 @@ var projectile_stats: Dictionary = {
 		"damage": 10.0,
 		"velocity": 600.0,
 		"magazine": 10,
-		"knockback_force": 80.0,
-		"knockback_duration": 0.25
+		"knockback_force": 250.0,
+		"knockback_duration": 0.2,
+		"knockback_direction": Vector2.ZERO,
 	}
 }

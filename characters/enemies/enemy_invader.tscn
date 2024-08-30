@@ -8,17 +8,15 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n3u64"]
-radius = 6.0
+radius = 7.0
 
 [node name="EnemyInvader" instance=ExtResource("1_gwy1k")]
 script = ExtResource("2_hu5g1")
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_2ypwj")
-animation = &"attack"
+animation = &"idle"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, -5)

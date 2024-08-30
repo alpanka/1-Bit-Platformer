@@ -23,6 +23,7 @@ signal damage_received(damage_amount)
 @export var speed_init: float
 @export var current_speed: float
 @export var speed_multiplier: float
+@export var is_free: bool = true
 
 @export_group("Jump Variables")
 @export var jump_force: float
@@ -32,6 +33,7 @@ signal damage_received(damage_amount)
 @export_group("Health Variables")
 @export var health_init: int
 @export var current_health: int
+@export var knockback_multiplier: float
 @export var damageable: bool = true
 
 var self_id: String
@@ -86,6 +88,7 @@ func initilize_stats() -> void:
 		can_ground_jump = Stats.character_stats[self_id]["can_ground_jump"]
 		can_air_jump = Stats.character_stats[self_id]["can_air_jump"]
 		health_init = Stats.character_stats[self_id]["health_init"]
+		knockback_multiplier = Stats.character_stats[self_id]["knockback_multiplier"]
 	else:
 		print("failed to assign self_id ", self.name)
 		return
@@ -109,6 +112,9 @@ func apply_damage(_damage_amount):
 		print(self.name, " damage ", _damage_amount, " - ", current_health )
 	
 	if current_health <= 0:
+		if not damageable:
+			return
+		
 		print("Should die: ", self.name)
 		_character_death()
 
@@ -126,6 +132,9 @@ func _jump() -> void:
 
 
 func _movement_handler(delta) -> void:
+	if not is_free:
+		return
+	
 	# Apply gravity
 	var gravity: Vector2 = get_gravity()
 	velocity.x += gravity.x * delta
