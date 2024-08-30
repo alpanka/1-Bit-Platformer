@@ -99,6 +99,6 @@ func _character_death() -> void:
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(character_sprite, "self_modulate", Color(1, 1, 1, 0.2), death_timer)
 	
-	await get_tree().create_timer(death_timer)
+	await get_tree().create_timer(death_timer).timeout
 
 	queue_free()
