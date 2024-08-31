@@ -1,8 +1,18 @@
 General Topics
+[] Adapt got git shader
+[] Add UI
+	[] Create theme for the main UI node
+	[] Player health
+	[] Player kill count
+	[X] Add a GameWorld scene
+		- Systems
+		- UI
+		- Level
+[] Add player state machine
+	[] Adjust animations for each state
 
 
-
-
+[] Player death scene
 
 
 AnimatedSprite2D

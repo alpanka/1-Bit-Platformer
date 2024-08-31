@@ -36,19 +36,24 @@ func _ready() -> void:
 
 ## Enemy characters have additional variables that need to be set
 func initilize_stats():
+	# Run base stats
 	super()
 	
+	# Run enemy base stats
 	detection_length = Stats.character_stats[self_id]["detection_length"]
 	attack_range = Stats.character_stats[self_id]["attack_range"]
 	damage = Stats.character_stats[self_id]["damage"]
 	
+	# get player node
 	player_node = get_tree().get_first_node_in_group("Player")
 	
 	# Get state_machine, connect to signal to get current state_name
 	if state_machine:
 		state_machine.connect("current_state_changed", _update_enemy_state_info)
 	
+	# Set starting focus to FREE
 	current_focus = FOCUS.FREE
+
 
 
 # Direction handler. Setting current direction based on state
@@ -84,6 +89,22 @@ func apply_knockback(_knocback_direction: Vector2, _knockback_duration: float):
 	current_speed = speed_init
 
 
+# Apply damage from hurtbox controller
+func apply_damage(_damage_amount):
+	#damage_received.emit(_damage_amount)
+	
+	if current_health >= 0:
+		current_health = current_health - _damage_amount
+		print(self.name, " damage ", _damage_amount, " - ", current_health )
+	
+	if current_health <= 0:
+		if not damageable:
+			return
+		
+		print("Should die: ", self.name)
+		_character_death()
+
+
 # Update state.name when changed.
 # Signal from state_machine
 func _update_enemy_state_info(_new_state) -> void:
@@ -108,6 +129,7 @@ func _character_death() -> void:
 	
 	is_alive = false
 	character_sprite.play("death")
+	Signals.enemy_died.emit(self.name)
 	
 	var tween: Tween = get_tree().create_tween()
 	tween.tween_property(character_sprite, "self_modulate", Color(1, 1, 1, 0.2), death_timer)

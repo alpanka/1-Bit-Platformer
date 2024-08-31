@@ -5,13 +5,14 @@ class_name PlatformerCharacterBase
 extends CharacterBody2D
 
 ## Emit direction change
+## Used by animation controller
 signal direction_changed(direction: Vector2)
 ## Emit alive status
-signal is_alive_changed(alive_state: bool)
+#signal is_alive_changed(alive_state: bool)
 ## Emit health change
 #signal health_changed(old_value: int, new_value: int)
 ## Emit damage received
-signal damage_received(damage_amount)
+#signal damage_received(damage_amount)
 
 
 @export_group("Nodes")
@@ -35,6 +36,7 @@ signal damage_received(damage_amount)
 @export var current_health: int
 @export var knockback_multiplier: float
 @export var damageable: bool = true
+@export var is_alive: bool = true
 
 var self_id: String
 
@@ -48,13 +50,13 @@ var direction: Vector2:
 		direction_changed.emit(direction)
 
 # Set is_alive and emit when changed
-var is_alive: bool = true:
-	set(value):
-		if is_alive == value:
-			return
-	
-		is_alive = value
-		is_alive_changed.emit(is_alive)
+#var is_alive: bool = true:
+	#set(value):
+		#if is_alive == value:
+			#return
+	#
+		#is_alive = value
+		#is_alive_changed.emit(is_alive)
 
 
 #enum STATE {
@@ -81,6 +83,9 @@ func _physics_process(delta: float) -> void:
 # TODO any better way to assign these values?
 # Some variables are player specific, some are enemy specific.
 func initilize_stats() -> void:
+	# Initilize character stats
+	# These are base characteristics.
+	# Character specific ones would be under their respective scripts
 	if self_id:
 		speed_init = Stats.character_stats[self_id]["speed_init"]
 		speed_multiplier = Stats.character_stats[self_id]["speed_multiplier"]
@@ -99,24 +104,29 @@ func initilize_stats() -> void:
 		#self.key = character_stats[key]
 		## Can I use dict key as a variable name somehow?
 	
+	# Set starter health and speed
 	current_speed = speed_init
 	current_health = health_init
 
 
-# Apply damage from hurtbox controller
-func apply_damage(_damage_amount):
-	damage_received.emit(_damage_amount)
-	
-	if current_health >= 0:
-		current_health = current_health - _damage_amount
-		print(self.name, " damage ", _damage_amount, " - ", current_health )
-	
-	if current_health <= 0:
-		if not damageable:
-			return
-		
-		print("Should die: ", self.name)
-		_character_death()
+func _char_damage_received(_dmg_amount):
+	print(self, " ", _dmg_amount)
+
+
+## Apply damage from hurtbox controller
+#func apply_damage(_damage_amount):
+	##damage_received.emit(_damage_amount)
+	#
+	#if current_health >= 0:
+		#current_health = current_health - _damage_amount
+		#print(self.name, " damage ", _damage_amount, " - ", current_health )
+	#
+	#if current_health <= 0:
+		#if not damageable:
+			#return
+		#
+		#print("Should die: ", self.name)
+		#_character_death()
 
 
 func jump_attempt() -> bool:

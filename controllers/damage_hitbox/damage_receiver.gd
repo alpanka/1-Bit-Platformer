@@ -30,7 +30,6 @@ func damage_received(_hitbox_stats: Dictionary):
 			var _multiplier: float = owner_node.knockback_multiplier
 			var _knockback_direction: Vector2 = _hitbox_stats["knockback_direction"]
 			var _knockback_duration: float = _hitbox_stats["knockback_duration"]
-			print(_knockback_direction, " ", _knockback_duration)
 			_knockback_direction = _knockback_direction * _multiplier
 			
 			owner_node.apply_knockback(_knockback_direction, _knockback_duration)
