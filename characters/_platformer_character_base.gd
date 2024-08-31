@@ -98,19 +98,39 @@ func initilize_stats() -> void:
 		print("failed to assign self_id ", self.name)
 		return
 
+	# Set starter health and speed
+	current_speed = speed_init
+	current_health = health_init
+	
 	#var character_stats: Dictionary = Stats.character_stats[self_id]
 	#
 	#for key in character_stats.keys():
 		#self.key = character_stats[key]
 		## Can I use dict key as a variable name somehow?
+
+
+func apply_damage(_damage_amount):
+	damage_label_pop(_damage_amount)
 	
-	# Set starter health and speed
-	current_speed = speed_init
-	current_health = health_init
+	if current_health >= 0:
+		current_health = current_health - _damage_amount
+		print(self.name, " damage ", _damage_amount, " - ", current_health )
+	
+	if current_health <= 0:
+		if not damageable:
+			return
+		
+		print("Should die: ", self.name)
+		_character_death()
 
 
-func _char_damage_received(_dmg_amount):
-	print(self, " ", _dmg_amount)
+
+# Run upon receiving damage
+func damage_label_pop(_damage_amount):
+	var pop_scene = Name.DAMAGE_POP_SCENE.instantiate()
+	pop_scene.position = Vector2(0, -24)
+	pop_scene.damage_amount = _damage_amount
+	add_child(pop_scene)
 
 
 ## Apply damage from hurtbox controller

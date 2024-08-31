@@ -89,22 +89,6 @@ func apply_knockback(_knocback_direction: Vector2, _knockback_duration: float):
 	current_speed = speed_init
 
 
-# Apply damage from hurtbox controller
-func apply_damage(_damage_amount):
-	#damage_received.emit(_damage_amount)
-	
-	if current_health >= 0:
-		current_health = current_health - _damage_amount
-		print(self.name, " damage ", _damage_amount, " - ", current_health )
-	
-	if current_health <= 0:
-		if not damageable:
-			return
-		
-		print("Should die: ", self.name)
-		_character_death()
-
-
 # Update state.name when changed.
 # Signal from state_machine
 func _update_enemy_state_info(_new_state) -> void:

@@ -10,6 +10,9 @@ var states_dict: Dictionary = {}
 var current_state: State
 
 @export var initial_state: State
+
+@export_group("DEBUG")
+@export var debug_on: bool = true
 @export var state_label: Label
 @export var print_names: bool = true
 
@@ -35,8 +38,13 @@ func _process(delta: float) -> void:
 	if current_state:
 		current_state.update_process(delta)
 	
+	# Update debug label is debug is on
 	if current_state and state_label:
-		state_label.text = current_state.name
+		if debug_on:
+			state_label.visible = true
+			state_label.text = current_state.name
+		else:
+			state_label.visible = false
 
 
 func _physics_process(delta: float) -> void:

@@ -9,7 +9,7 @@ extends Node2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 
 
-var projectile_scene: PackedScene = Name.projectile_lvl1
+var projectile_scene: PackedScene = Name.PROJECTILE_LVL1_SCENE
 var projectile_parent: Node2D
 
 

@@ -6,40 +6,44 @@ extends Node
 
 
 ## Input actions
-var left: 	StringName = "ui_left"
-var right: 	StringName = "ui_right"
-var up: 	StringName = "ui_up"
-var down: 	StringName = "ui_down"
-var jump:	StringName = "jump"
-var attack:	StringName = "attack"
+const left: 	StringName = "ui_left"
+const right: 	StringName = "ui_right"
+const up: 		StringName = "ui_up"
+const down: 	StringName = "ui_down"
+const jump:		StringName = "jump"
+const attack:	StringName = "attack"
+
 
 
 ## Animation names
-var anim_idle:		StringName = "idle"
-var anim_walk:		StringName = "walk"
-var anim_detect:	StringName = "detect"
-var anim_chase:		StringName = "chase"
-var anim_attack:	StringName = "attack"
-var anim_got_hit:	StringName = "got_hit"
-var anim_dead:		StringName = "death"
+const anim_idle:		StringName = "idle"
+const anim_walk:		StringName = "walk"
+const anim_detect:		StringName = "detect"
+const anim_chase:		StringName = "chase"
+const anim_attack:		StringName = "attack"
+const anim_got_hit:		StringName = "got_hit"
+const anim_dead:		StringName = "death"
+
+
 
 ## Scenes to instantiate/reference
 ## Projectiles
 # Base projectile scene
-var projectile_base: PackedScene = preload("res://weapons/projectiles/_projectile_base_scene.tscn")
+const PROJECTILE_BASE_SCENE: PackedScene = preload("res://weapons/projectiles/_projectile_base_scene.tscn")
 # Level-1 projectile
-var projectile_lvl1: PackedScene = preload("res://weapons/projectiles/projectile_lvl_1.tscn")
+const PROJECTILE_LVL1_SCENE: PackedScene = preload("res://weapons/projectiles/projectile_lvl_1.tscn")
 
 ## Enemies
+# Enemy base scene
+const PLATFORMER_ENEMY_BASE: PackedScene = preload("res://characters/enemies/_platformer_enemy_base.tscn")
 # Enemy invader scene
-var enemy_invader: PackedScene = preload("res://characters/enemies/enemy_invader.tscn")
+const ENEMY_INVADER_SCENE: PackedScene = preload("res://characters/enemies/enemy_invader.tscn")
+
+## UI Scenes
+# Damage pop scene
+const DAMAGE_POP_SCENE: PackedScene = preload("res://ui/damage_pop.tscn")
 
 
 
 ## Group names
-var projectiles_group: String = "Projectiles"
-
-
-## Blacboard keys
-var is_alive_key:	StringName = "is_alive"
-var got_hit_key:	StringName = "got_hit"
+const projectiles_group: String = "Projectiles"

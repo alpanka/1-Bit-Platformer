@@ -10,12 +10,15 @@ var kill_count: int
 
 
 func _ready() -> void:
-	_initilialize_onverlay()
+	_initialize_onverlay()
 
 
-func _initilialize_onverlay():
+func _initialize_onverlay():
+	# Connect to used signals
 	Signals.player_health_changed.connect(_on_health_changed)
 	Signals.enemy_died.connect(_on_enemy_died)
+	
+	# Update label.text
 	_update_ui_labels()
 
 
