@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cqxcq7f2rw7xg"]
+[gd_scene load_steps=6 format=3 uid="uid://cqxcq7f2rw7xg"]
 
 [ext_resource type="PackedScene" uid="uid://crxooykgv600p" path="res://weapons/projectiles/_projectile_base_scene.tscn" id="1_33j44"]
 [ext_resource type="Script" path="res://weapons/projectiles/projectile_lvl_1.gd" id="2_cgnnr"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mp2os"]
 radius = 3.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgvha"]
+size = Vector2(6, 6)
 
 [node name="Projectile LVL1" instance=ExtResource("1_33j44")]
 script = ExtResource("2_cgnnr")
@@ -16,3 +19,11 @@ frame_progress = 0.856333
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_mp2os")
+
+[node name="HitboxController" parent="." index="2"]
+controller_area_auto_set = false
+
+[node name="HitboxArea" parent="HitboxController" index="0"]
+shape = SubResource("RectangleShape2D_kgvha")
+
+[editable path="HitboxController"]

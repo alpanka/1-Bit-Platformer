@@ -78,7 +78,6 @@ func apply_knockback(_knocback_direction: Vector2, _knockback_duration: float):
 	#velocity.y -= 100.0
 	velocity.x += _knocback_direction.x * speed_init
 	move_and_slide()
-	print(velocity.x, " ", _knocback_direction.x)
 	await get_tree().create_timer(_knockback_duration).timeout
 	
 	is_free = true
