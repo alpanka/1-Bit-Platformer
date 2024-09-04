@@ -41,7 +41,7 @@ const ENEMY_INVADER_SCENE: PackedScene = preload("res://characters/enemies/enemy
 
 ## UI Scenes
 # Damage pop scene
-const DAMAGE_POP_SCENE: PackedScene = preload("res://ui/damage_pop.tscn")
+const DAMAGE_POP_SCENE: PackedScene = preload("res://user_interface/damage_pop.tscn")
 
 
 

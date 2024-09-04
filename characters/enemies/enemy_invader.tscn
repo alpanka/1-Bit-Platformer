@@ -4,8 +4,9 @@
 [ext_resource type="SpriteFrames" uid="uid://bsdu344byhlqb" path="res://characters/enemies/enemy_invader_sprite.tres" id="2_2ypwj"]
 [ext_resource type="Script" path="res://characters/enemies/enemy_invader.gd" id="2_hu5g1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_xrx5y"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cnbhl"]
 radius = 5.0
+height = 12.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n3u64"]
 radius = 7.0
@@ -18,9 +19,9 @@ sprite_frames = ExtResource("2_2ypwj")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_xrx5y")
+[node name="CharacterCollisionShape" parent="." index="1"]
+position = Vector2(0, -6)
+shape = SubResource("CapsuleShape2D_cnbhl")
 
 [node name="HitboxController" parent="Controllers" index="0"]
 controller_area_auto_set = false

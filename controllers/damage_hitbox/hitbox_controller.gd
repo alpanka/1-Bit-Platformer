@@ -62,23 +62,23 @@ func _on_area_entered(area: Area2D) -> void:
 ## Copy character's collision shape details.
 ## Apply them to Controller area shape.
 func _controller_area_init() -> void:
+	controller_area.debug_color = Color(0.8, 0, 0, 0.1)
 	owner_node = get_owner()
 	
+	
 	if controller_area_auto_set == false:
-		controller_area.debug_color = Color(0.8, 0, 0, 0.1)
 		return
 	
 	# Find parent's collision shape
 	for child in get_owner().get_children():
 		if child is CollisionShape2D:
-			push_warning("Shape set for ", child.name)
-			collision_area = child
+			if child.name == "CharacterCollisionShape":
+				push_warning("Shape set for ", child.name)
+				collision_area = child
 
 	# Apply gotten shape properties to hurtbox
 	controller_area.shape = collision_area.shape
 	controller_area.position = collision_area.position
-	controller_area.debug_color = Color(0.8, 0, 0, 0.1)
-
 
 
 func _on_cooled_down_timeout() -> void:

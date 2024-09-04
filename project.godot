@@ -17,9 +17,9 @@ config/features=PackedStringArray("4.3", "GL Compatibility")
 
 [autoload]
 
-Name="*res://globals/Name.gd"
 Stats="*res://globals/Stats.gd"
 Signals="*res://globals/Signals.gd"
+Names="*res://globals/Names.gd"
 
 [display]
 

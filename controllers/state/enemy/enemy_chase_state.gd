@@ -5,7 +5,7 @@ extends State
 var direction_to_player: Vector2
 
 func state_enter():
-	actor.character_sprite.play(Name.anim_chase)
+	actor.character_sprite.play(Names.anim_chase)
 	
 	actor.current_speed = actor.current_speed * actor.speed_multiplier
 	

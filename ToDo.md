@@ -1,5 +1,5 @@
 General Topics
-[] Adapt got git shader
+[] Adapt got hit shader
 [] Add UI
 	[] Create theme for the main UI node
 	[] Player health

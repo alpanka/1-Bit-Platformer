@@ -9,14 +9,14 @@ extends Node
 func _process(_delta: float) -> void:
 	## Player multi directional movement
 	player.direction = Input.get_vector(
-		Name.left, Name.right, Name.up, Name.down)
+		Names.left, Names.right, Names.up, Names.down)
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	## Jump action
-	if Input.is_action_just_pressed(Name.jump):
+	if Input.is_action_just_pressed(Names.jump):
 		player.jump_attempt()
 
 	## Shoot action
-	if Input.is_action_just_pressed(Name.attack):
+	if Input.is_action_just_pressed(Names.attack):
 		shooter_controller.shoot_attempt()

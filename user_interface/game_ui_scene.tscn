@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://doaenf3uq7xtb"]
 
-[ext_resource type="Theme" uid="uid://de3hglsih78lj" path="res://ui/game_ui_theme.tres" id="1_q0s8l"]
-[ext_resource type="Script" path="res://ui/game_play_overlay.gd" id="2_3yc3j"]
+[ext_resource type="Theme" uid="uid://de3hglsih78lj" path="res://user_interface/game_ui_theme.tres" id="1_q0s8l"]
+[ext_resource type="Script" path="res://user_interface/game_play_overlay.gd" id="2_3yc3j"]
 
 [node name="UI" type="CanvasLayer"]
 

@@ -127,7 +127,7 @@ func apply_damage(_damage_amount):
 
 # Run upon receiving damage
 func damage_label_pop(_damage_amount):
-	var pop_scene = Name.DAMAGE_POP_SCENE.instantiate()
+	var pop_scene = Names.DAMAGE_POP_SCENE.instantiate()
 	pop_scene.position = Vector2(0, -24)
 	pop_scene.damage_amount = _damage_amount
 	add_child(pop_scene)

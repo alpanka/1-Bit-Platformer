@@ -9,14 +9,14 @@ extends Node2D
 @onready var ray_cast: RayCast2D = $RayCast2D
 
 
-var projectile_scene: PackedScene = Name.PROJECTILE_LVL1_SCENE
+var projectile_scene: PackedScene = Names.PROJECTILE_LVL1_SCENE
 var projectile_parent: Node2D
 
 
 # TODO Add a cooldown timer
 # Timer duration could be different for different projectiles
 func _ready() -> void:
-	projectile_parent = get_tree().get_first_node_in_group(Name.projectiles_group)
+	projectile_parent = get_tree().get_first_node_in_group(Names.projectiles_group)
 
 
 func _process(_delta: float) -> void:
