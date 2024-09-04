@@ -5,8 +5,8 @@ extends Control
 @onready var kill_count_label: Label = $VBoxContainer/Kills/KillCountLabel
 
 
-var health: int
-var kill_count: int
+@export var health: int
+@export var kill_count: int
 
 
 func _ready() -> void:
@@ -28,7 +28,7 @@ func _update_ui_labels():
 
 
 func _on_health_changed(_currenth_health: int, _damage: int):
-	health = _currenth_health - _damage
+	health = _currenth_health
 	_update_ui_labels()
 
 

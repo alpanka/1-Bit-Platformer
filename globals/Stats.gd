@@ -25,7 +25,7 @@ var character_stats: Dictionary = {
 		"knockback_multiplier": 1.25,
 		"detection_length": 50,
 		"attack_range": 15.0,
-		"damage": 20
+		"damage": 10
 	}
 }
 

@@ -8,3 +8,5 @@ script = ExtResource("1_20j4n")
 [node name="HitboxArea" type="CollisionShape2D" parent="."]
 
 [node name="CooldownTimer" type="Timer" parent="."]
+
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
