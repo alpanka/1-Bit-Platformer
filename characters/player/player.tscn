@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dgc7narjno60k"]
+[gd_scene load_steps=9 format=3 uid="uid://dgc7narjno60k"]
 
 [ext_resource type="Script" path="res://characters/player/player.gd" id="1_2xyhl"]
 [ext_resource type="SpriteFrames" uid="uid://c0ocbb5gybv11" path="res://characters/player/player_sprite_frames.tres" id="1_m0qnb"]
@@ -10,6 +10,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8sklj"]
 radius = 4.0
 height = 10.0
+
+[sub_resource type="ConcavePolygonShape2D" id="ConcavePolygonShape2D_fnim1"]
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("character_sprite") groups=["Player"]]
 collision_layer = 512
@@ -48,3 +50,7 @@ character = NodePath("../..")
 [node name="ShooterController" parent="Controllers" node_paths=PackedStringArray("character") instance=ExtResource("5_kgl0d")]
 position = Vector2(0, -3)
 character = NodePath("../..")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-17, -9)
+shape = SubResource("ConcavePolygonShape2D_fnim1")

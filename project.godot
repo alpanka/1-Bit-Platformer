@@ -29,6 +29,10 @@ window/stretch/mode="canvas_items"
 
 movie_writer/movie_file="X:/sample.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/project-time-tracker/plugin.cfg")
+
 [file_customization]
 
 folder_colors={
